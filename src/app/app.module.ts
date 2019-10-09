@@ -9,10 +9,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UserBioComponent } from './components/dashboard/UserBioComponent';
 
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
 	{ path: "dashboard", component: DashboardComponent },
+	{ path: "userBio", component: UserBioComponent },
 	{ path: "", redirectTo: "login", pathMatch: "full" }
 ]
 
@@ -20,7 +22,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+	 DashboardComponent,
+	 UserBioComponent
   ],
   imports: [
 	MaterialModule,
