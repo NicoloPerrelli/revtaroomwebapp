@@ -7,11 +7,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./user-bio.component.css']
 })
 export class UserBioComponent implements OnInit {
-	bioForm: FormGroup;
+	userBioForm: FormGroup;
 	errorTag=false;
-	username = 'userStandIn';
-	currentAbtMe: String;
-	currentNTK: String;
+	username = "userStandIn";
+	currentAbtMe="";
+	currentNTK="Alergic to peanuts";
 
 	constructor(private formBuilder: FormBuilder) {
 		console.log("UserBioComponent instantiating...");
@@ -21,8 +21,13 @@ export class UserBioComponent implements OnInit {
 
 	ngOnInit() {
 		console.log("In Bio ngOnInit");
-		this.bioForm = this.formBuilder.group({
-
+		this.userBioForm = this.formBuilder.group({
+			abtMe: [''],
+			needToKnow: [''],
+			gender: [''],
+			showName: [''],
+			showEmail: [''],
+			showPhone: ['']
 		})
 		//check db for any pre existing bio info to fill the current* vars
 		
@@ -30,6 +35,6 @@ export class UserBioComponent implements OnInit {
 	}
 
 	get fields() {
-		return this.bioForm.controls;
+		return this.userBioForm.controls;
 	}
 }
