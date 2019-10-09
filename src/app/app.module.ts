@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 // Angular Material
 import { MaterialModule } from './modules/material.module';
 
@@ -27,6 +27,8 @@ const routes: Routes = [
 	],
 	imports:[
 		MaterialModule,
+		FormsModule,
+		ReactiveFormsModule,
 		RouterModule.forRoot(routes),
 		BrowserModule,
 		BrowserAnimationsModule
