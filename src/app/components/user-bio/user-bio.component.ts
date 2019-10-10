@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-bio',
@@ -13,9 +14,8 @@ export class UserBioComponent implements OnInit {
 	currentAbtMe="";
 	currentNTK="Alergic to peanuts";
 
-	constructor(private formBuilder: FormBuilder) {
+	constructor(private formBuilder: FormBuilder, private userService: UserService) {
 		console.log("UserBioComponent instantiating...");
-		
 		console.log("UserBioComponent Finished");
 	}
 
@@ -24,35 +24,43 @@ export class UserBioComponent implements OnInit {
 		this.userBioForm = this.formBuilder.group({
 			abtMe: [this.currentAbtMe],
 			needToKnow: [this.currentNTK],
-			gender: [''],
-			showName: [''],
-			showEmail: [''],
-			showPhone: ['']
+			gender: ['other']
+			// showName: [false],
+			// showEmail: [false],
+			// showPhone: [false]
 		})
-		//check db for any pre existing bio info to fill the current* vars
-		
+		//check db for any pre existing bio info to fill the current* vars HERE
 		console.log("Leaving Bio ngOnInit");
 	}
 
 	get fields() {
 		return this.userBioForm.controls;
 	}
+
 	onSubmit = () => {
 		console.log("Update Pressed");
-		console.log("Getting Form Data On Page");
-		let name=false,email=false,phone=false;
-		if(this.fields.showName.value){name=true;}
-		if(this.fields.showEmail.value){email=true;}
-		if(this.fields.showPhone.value){phone=true;}
 
-		let thing = ([
+		//ready to be sent if we have time!
+		// let name=false,email=false,phone=false;
+		// if(this.fields.showName.value){name=true;}
+		// if(this.fields.showEmail.value){email=true;}
+		// if(this.fields.showPhone.value){phone=true;}
+
+		console.log("Sending to Service");
+		this.userService.updateUser(
 			this.fields.abtMe.value,
 			this.fields.needToKnow.value,
-			this.fields.gender.value,
-			name,email,phone
-		]);
-		console.log(thing);
-			
+			this.fields.gender.value
+			//to be added later
+			// name,email,phone
+		).subscribe(
+			(resp) => {
+				console.log(resp);
+			},
+			(err) => {
+				console.log("Problem in userBio.Component.ts");
+				console.log(err);
+			}
+		);
 	}
-
 }

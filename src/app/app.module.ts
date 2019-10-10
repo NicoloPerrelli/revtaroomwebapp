@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,16 +23,17 @@ const routes: Routes = [
 	declarations: [
 		AppComponent,
 		LoginComponent,
-		DashboardComponent,
-		UserBioComponent
+		UserBioComponent,
+		DashboardComponent
 	],
 	imports:[
-		MaterialModule,
 		FormsModule,
-		ReactiveFormsModule,
-		RouterModule.forRoot(routes),
 		BrowserModule,
-		BrowserAnimationsModule
+		MaterialModule,
+		HttpClientModule,
+		ReactiveFormsModule,
+		BrowserAnimationsModule,
+		RouterModule.forRoot(routes)
 	],
 	providers:[],
 	bootstrap:[AppComponent]
