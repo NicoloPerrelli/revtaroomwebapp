@@ -9,7 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class UserBioComponent implements OnInit {
 	userBioForm: FormGroup;
 	errorTag=false;
-	username = "userStandIn";
+	username = "Iago";
 	currentAbtMe="";
 	currentNTK="Alergic to peanuts";
 
@@ -22,8 +22,8 @@ export class UserBioComponent implements OnInit {
 	ngOnInit() {
 		console.log("In Bio ngOnInit");
 		this.userBioForm = this.formBuilder.group({
-			abtMe: [''],
-			needToKnow: [''],
+			abtMe: [this.currentAbtMe],
+			needToKnow: [this.currentNTK],
 			gender: [''],
 			showName: [''],
 			showEmail: [''],
@@ -37,4 +37,22 @@ export class UserBioComponent implements OnInit {
 	get fields() {
 		return this.userBioForm.controls;
 	}
+	onSubmit = () => {
+		console.log("Update Pressed");
+		console.log("Getting Form Data On Page");
+		let name=false,email=false,phone=false;
+		if(this.fields.showName.value){name=true;}
+		if(this.fields.showEmail.value){email=true;}
+		if(this.fields.showPhone.value){phone=true;}
+
+		let thing = ([
+			this.fields.abtMe.value,
+			this.fields.needToKnow.value,
+			this.fields.gender.value,
+			name,email,phone
+		]);
+		console.log(thing);
+			
+	}
+
 }
