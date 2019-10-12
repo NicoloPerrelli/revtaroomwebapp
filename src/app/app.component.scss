@@ -3,4 +3,24 @@
 mat-toolbar {
 	background: $darkpri;
 	color: $texticon;
+
+	i {
+		padding: 0.8rem;
+	}
+
+	span {
+		display: inline-block;
+		margin-left: 0.5rem;
+		font-size: 1.5rem;
+	}
+
+	.right-end-toolbar {
+		position: absolute;
+		right: 2rem;
+
+		span {
+			font-size: 1rem;
+		}
+
+	}
 }

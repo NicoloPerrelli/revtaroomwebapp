@@ -1,0 +1,53 @@
+<h3>Housing Information</h3>
+
+<p>
+	Were you assigned to a client?
+	Help other Coders from Revature to find information about
+	cost for renting a place where you are.
+</p>
+
+<form [formGroup]="housingForm" (ngSubmit)="onSubmit()" class="form-container">
+
+	<div class="form-container-block">
+		
+		<h4>Address</h4>
+
+		<div class="form-container-row">
+			<mat-form-field>
+				<input matInput placeholder="Street Name">
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput placeholder="House Number" type="number">
+			</mat-form-field>
+		</div>
+	
+		<div class="form-container-row">
+			<mat-form-field>
+				<input matInput placeholder="City">
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="State">
+				<mat-option *ngFor="let item of housingInfoService.states" value="item">{{ item }}</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+	
+		<br>
+	
+		<h4>Housing info</h4>
+		
+		<mat-form-field class="price">
+			<input matInput placeholder="Average monthly cost for a room" type="number">
+		</mat-form-field>
+
+		<br>
+
+		<mat-form-field class="one-line">
+			<textarea rows="3" matInput placeholder="Description of the area, restaurants and markets around, traffic, public transportation etc."></textarea>
+		</mat-form-field>
+
+
+	</div>
+
+
+</form>
