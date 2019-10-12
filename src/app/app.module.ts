@@ -16,11 +16,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserBioComponent } from './components/user-bio/user-bio.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HousingInfoComponent } from './components/housing-info/housing-info.component';
 
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
-	{ path: "dashboard", component: DashboardComponent },
-	{ path: "userBio", component: UserBioComponent },
+	{ path: "dashboard", component: DashboardComponent, children: [
+		{ path: "userBio", component: UserBioComponent },
+		{ path: "housing-info", component: HousingInfoComponent }
+	] },
 	{ path: "", redirectTo: "login", pathMatch: "full" }
 ]
 
@@ -29,7 +32,8 @@ const routes: Routes = [
 		AppComponent,
 		LoginComponent,
 		UserBioComponent,
-		DashboardComponent
+		DashboardComponent,
+		HousingInfoComponent
 	],
 	imports:[
 		FormsModule,

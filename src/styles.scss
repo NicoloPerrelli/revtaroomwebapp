@@ -29,3 +29,51 @@ $lightgrey: #f6f6f6;
 	color: $lightpri;
 	margin-bottom: 7px;
 }
+
+
+/* Dashboard Content */
+.dashboard-container {
+	margin-left: 1.5rem;
+}
+
+
+/* Forms */
+mat-error {
+	font-size: 0.8rem;
+	padding: 0 1rem;
+}
+
+.form-container {
+
+	display: flex;
+	flex-direction: column;
+	
+	padding: 1rem 1rem;
+	width: 80%;
+	max-width: 90%;
+
+	.form-container-block {
+		border-radius: 7px;
+		border: 1px solid $dividercolor;
+		margin-bottom: 2rem;
+
+		h4 {
+			margin-left: 1.5rem;
+		}
+
+		.form-container-row {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-around;
+	
+			mat-form-field {
+				width: 25rem;
+				max-width: 90%;
+				min-width: 30%;
+			}
+	
+		}
+
+	}
+}

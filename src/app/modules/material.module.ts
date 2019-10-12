@@ -7,11 +7,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule, MatButtonModule } from '@angular/material';
-
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [],
   exports: [
+    MatSelectModule,
     MatInputModule,
     MatButtonModule,
     MatToolbarModule,
