@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div class="login-container">
+
+	<span>Login</span>
+
+	<mat-form-field>
+		<input [(ngModel)]="email" matInput placeholder="Email">
+		<mat-error *ngIf="email.invalid">Invalid email</mat-error>
+	</mat-form-field>
+	<mat-form-field>
+		<input [(ngModel)]="password" matInput placeholder="Password">
+		<mat-error *ngIf="password.invalid">Invalid Password</mat-error>
+	</mat-form-field>
+
+	<button mat-button>Login</button>
+
+</div>

@@ -16,3 +16,16 @@ $secondarytext: #757575;
 $accent: #448AFF;
 $dividercolor: #BDBDBD;
 
+$lightgrey: #f6f6f6;
+
+
+/* Interactive icons */
+.custom-icons {
+	cursor: pointer;
+	transition: 0.4 ease-in-out 0.2;
+}
+
+.custom-icons:active {
+	color: $lightpri;
+	margin-bottom: 7px;
+}

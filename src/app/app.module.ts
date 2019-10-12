@@ -4,9 +4,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 // Angular Material
 import { MaterialModule } from './modules/material.module';
 
+// Services
+import { NavbarService } from './services/navbar-service/navbar.service';
+
+// Components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserBioComponent } from './components/user-bio/user-bio.component';
@@ -35,7 +40,9 @@ const routes: Routes = [
 		BrowserAnimationsModule,
 		RouterModule.forRoot(routes)
 	],
-	providers:[],
+	providers:[
+		NavbarService
+	],
 	bootstrap:[AppComponent]
 })
 
