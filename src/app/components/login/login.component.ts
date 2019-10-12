@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators } from 'src/app/utils/validators';
+import { ValidatorsService } from 'src/app/services/validator-service/validators.service';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 
 @Component({
@@ -14,16 +14,20 @@ export class LoginComponent implements OnInit {
 	password:string;
 	passError = false;
 
-	constructor(private validator: Validators, private authService: AuthService) { }
+	constructor(private authService: AuthService, private validator: ValidatorsService) { }
 
 	ngOnInit() {
 	}
 
 	submitLogin() {
+		console.log("In submitLogin...");
+		
 		// Validation
 		this.emailError = !this.validator.email(this.email);
 		this.passError = !this.validator.password(this.password);
 		if(this.emailError || this.passError) return;
+
+		console.log("Passed validators");
 
 		// Send to server
 		this.authService.authenticate(this.email, this.password)

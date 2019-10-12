@@ -3,14 +3,16 @@
 	<span>Login</span>
 
 	<mat-form-field>
-		<input [(ngModel)]="email" matInput placeholder="Email">
-		<mat-error *ngIf="email.invalid">Invalid email</mat-error>
+		<input [(ngModel)]="email" matInput placeholder="Email" type="email">
+		<mat-error *ngIf="emailError">Invalid email</mat-error>
 	</mat-form-field>
 	<mat-form-field>
-		<input [(ngModel)]="password" matInput placeholder="Password">
-		<mat-error *ngIf="password.invalid">Invalid Password</mat-error>
+		<input [(ngModel)]="password" matInput placeholder="Password" type="password">
+		<mat-error *ngIf="passwordError">Invalid Password</mat-error>
 	</mat-form-field>
 
-	<button mat-button>Login</button>
+	<br>
+
+	<button mat-button (click)="submitLogin()">Login</button>
 
 </div>
