@@ -49,7 +49,7 @@ export class MapService {
 	mockGetAddresses(map:L.Map) {
 		let addr = [
 			[27.996097, -82.582035, "IQ Apartments"],
-			[27.881086, -82.261611, "Saint Petesburg"],
+			[27.7733051, -82.6469934, "Saint Petesburg"],
 			[28.545179, -81.373291, "Orlando"]
 		]
 
