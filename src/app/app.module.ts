@@ -5,6 +5,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// Leaflet
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
+
 // Angular Material
 import { MaterialModule } from './modules/material.module';
 
@@ -17,12 +21,14 @@ import { LoginComponent } from './components/login/login.component';
 import { UserBioComponent } from './components/user-bio/user-bio.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HousingInfoComponent } from './components/housing-info/housing-info.component';
+import { MapComponent } from './components/map/map.component';
 
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
 	{ path: "dashboard", component: DashboardComponent, children: [
 		{ path: "userBio", component: UserBioComponent },
-		{ path: "housing-info", component: HousingInfoComponent }
+		{ path: "housing-info", component: HousingInfoComponent },
+		{ path: "map", component: MapComponent }
 	] },
 	{ path: "", redirectTo: "login", pathMatch: "full" }
 ]
@@ -33,10 +39,13 @@ const routes: Routes = [
 		LoginComponent,
 		UserBioComponent,
 		DashboardComponent,
-		HousingInfoComponent
+		HousingInfoComponent,
+		MapComponent
 	],
 	imports:[
 		FormsModule,
+		LeafletModule.forRoot(),
+		LeafletMarkerClusterModule.forRoot(),
 		BrowserModule,
 		MaterialModule,
 		HttpClientModule,

@@ -6,4 +6,7 @@ export class Address {
 	State: string;
 	zipCode: string;
 
+	latitude: number;
+	longitude: number;
+
 }

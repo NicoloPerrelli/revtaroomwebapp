@@ -10,10 +10,14 @@ import { HousingInfoService } from '../../services/housing-service/housing-info.
 export class HousingInfoComponent implements OnInit {
 
 	housingForm: FormGroup;
+	showForm:boolean = false;
 
 	constructor(
 		private housingInfoService: HousingInfoService,
-		private formBuilder: FormBuilder) { }
+		private formBuilder: FormBuilder)
+	{
+		
+	}
 
 	ngOnInit() {
 		this.formBuilder.group({
@@ -25,7 +29,7 @@ export class HousingInfoComponent implements OnInit {
 			State: ['', Validators.required],
 			zipCode: ['',Validators.required]
 		})
-
+		this.showForm = true;
 	}
 
 	get fields() {

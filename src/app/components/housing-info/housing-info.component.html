@@ -6,7 +6,7 @@
 	cost for renting a place where you are.
 </p>
 
-<form [formGroup]="housingForm" (ngSubmit)="onSubmit()" class="form-container">
+<form *ngIf="showForm" [formGroup]="housingForm" (ngSubmit)="onSubmit()" class="form-container">
 
 	<div class="form-container-block">
 		
@@ -37,7 +37,7 @@
 		<h4>Housing info</h4>
 		
 		<mat-form-field class="price">
-			<input matInput placeholder="Average monthly cost for a room" type="number">
+			<input matInput placeholder="Cost for a room" type="number">
 		</mat-form-field>
 
 		<br>
