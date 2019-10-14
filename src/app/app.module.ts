@@ -22,6 +22,9 @@ import { UserBioComponent } from './components/user-bio/user-bio.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HousingInfoComponent } from './components/housing-info/housing-info.component';
 import { MapComponent } from './components/map/map.component';
+import { RegisterComponent } from './components/register/register.component';
+
+
 
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
@@ -40,7 +43,9 @@ const routes: Routes = [
 		UserBioComponent,
 		DashboardComponent,
 		HousingInfoComponent,
-		MapComponent
+		MapComponent,
+		RegisterComponent
+		
 	],
 	imports:[
 		FormsModule,
