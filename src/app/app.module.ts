@@ -30,8 +30,6 @@ const routes: Routes = [
 	{ path: "login", component: LoginComponent },
 	{ path: "dashboard", component: DashboardComponent, children: [
 		{ path: "user-bio", component: UserBioComponent },
-		{ path: "housing-info", component: HousingInfoComponent }
-		{ path: "userBio", component: UserBioComponent },
 		{ path: "housing-info", component: HousingInfoComponent },
 		{ path: "map", component: MapComponent }
 	] },
