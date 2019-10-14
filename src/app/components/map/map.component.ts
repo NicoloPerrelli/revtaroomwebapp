@@ -17,7 +17,8 @@ export class MapComponent implements OnInit {
 		this.map = L.map('mapId').setView([27.996097, -82.582035], 8,);
 		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-			maxZoom: 18
+			maxZoom: 18,
+			minZoom: 4
         }).addTo(this.map);
 
 		this.mapService.mockGetAddresses(this.map);

@@ -11,18 +11,17 @@ export class DashboardComponent implements OnInit {
 	opened: boolean = true;
 
 	constructor(private navbar: NavbarService) {
-		this.navbar.sidenav$.subscribe(() => {
-			console.log("Burguer");
-			
-			this.toggle();
-		})
-	 }
+		
+	}
 
 	ngOnInit() {
 	}
 
 	toggle() {
+		console.log("Burguer");
 		this.opened = !this.opened;
 	}
+
+	
 
 }

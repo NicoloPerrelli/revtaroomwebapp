@@ -20,15 +20,17 @@ export class HousingInfoComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.formBuilder.group({
+		this.housingForm = this.formBuilder.group({
 			pricePerMonth: ['',Validators.required],
 			description: [''],
-			streetName: [''],
+			streetName: ['', Validators.required],
 			houseNumber: [''],
 			city: ['',Validators.required],
-			State: ['', Validators.required],
+			state: ['', Validators.required],
 			zipCode: ['',Validators.required]
 		})
+		console.log(this.housingForm);
+		
 		this.showForm = true;
 	}
 
@@ -37,6 +39,8 @@ export class HousingInfoComponent implements OnInit {
 	}
 
 	onSubmit() {
+		if(this.housingForm.invalid) return;
+		console.log("Submitted form");
 		
 	}
 
