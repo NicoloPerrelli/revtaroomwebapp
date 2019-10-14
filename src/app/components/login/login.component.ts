@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidatorsService } from 'src/app/services/validator-service/validators.service';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +10,6 @@ import { AuthService } from 'src/app/services/auth-service/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
 	email:string;
 	emailError = false;
 	password:string;
