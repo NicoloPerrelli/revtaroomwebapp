@@ -11,7 +11,6 @@ export class UserService {
 
 	constructor(private http: HttpClient) {}
 
-
 	updateUser = (abtMe: string, NTK: string, gender: string 
 		/*, name:boolean, email:boolean, phone:boolean */) => {
 		let userBio = {abtMe, NTK, gender/*, name, email, phone */}
