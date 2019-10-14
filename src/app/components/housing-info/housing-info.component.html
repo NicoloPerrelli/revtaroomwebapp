@@ -6,7 +6,7 @@
 	cost for renting a place where you are.
 </p>
 
-<form [formGroup]="housingForm" (ngSubmit)="onSubmit()" class="form-container">
+<form *ngIf="showForm" [formGroup]="housingForm" (ngSubmit)="onSubmit()" class="form-container">
 
 	<div class="form-container-block">
 		
@@ -14,22 +14,31 @@
 
 		<div class="form-container-row">
 			<mat-form-field>
-				<input matInput placeholder="Street Name">
+				<input matInput placeholder="Street Name" formControlName="streetName">
 			</mat-form-field>
+			<!-- <div *ngIf="fields.streetName.errors">
+				<mat-error *ngIf="fields.streetName.errors.required">Street Name is required</mat-error>
+			</div> -->
 			<mat-form-field>
-				<input matInput placeholder="House Number" type="number">
+				<input matInput placeholder="House Number" type="number" formControlName="houseNumber">
 			</mat-form-field>
 		</div>
 	
 		<div class="form-container-row">
 			<mat-form-field>
-				<input matInput placeholder="City">
+				<input matInput placeholder="City" formControlName="city">
 			</mat-form-field>
+			<!-- <div *ngIf="submitted && fields.city.errors">
+				<mat-error *ngIf="fields.city.errors.required">City is required</mat-error>
+			</div> -->
 			<mat-form-field>
-				<mat-select placeholder="State">
+				<mat-select placeholder="State" formControlName="state">
 				<mat-option *ngFor="let item of housingInfoService.states" value="item">{{ item }}</mat-option>
 				</mat-select>
 			</mat-form-field>
+			<div *ngIf="submitted && fields.state.errors">
+				<mat-error *ngIf="fields.state.errors.required">State is required</mat-error>	
+			</div>
 		</div>
 	
 		<br>
@@ -37,7 +46,7 @@
 		<h4>Housing info</h4>
 		
 		<mat-form-field class="price">
-			<input matInput placeholder="Average monthly cost for a room" type="number">
+			<input matInput placeholder="Cost for a room in dollars" type="number">
 		</mat-form-field>
 
 		<br>
@@ -47,6 +56,10 @@
 		</mat-form-field>
 
 
+	</div>
+
+	<div class="btn-container">
+		<button mat-button type="submit">Add Housing-Info</button>
 	</div>
 
 

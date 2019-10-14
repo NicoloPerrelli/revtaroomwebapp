@@ -10,22 +10,28 @@ import { HousingInfoService } from '../../services/housing-service/housing-info.
 export class HousingInfoComponent implements OnInit {
 
 	housingForm: FormGroup;
+	showForm:boolean = false;
 
 	constructor(
 		private housingInfoService: HousingInfoService,
-		private formBuilder: FormBuilder) { }
+		private formBuilder: FormBuilder)
+	{
+		
+	}
 
 	ngOnInit() {
-		this.formBuilder.group({
+		this.housingForm = this.formBuilder.group({
 			pricePerMonth: ['',Validators.required],
 			description: [''],
-			streetName: [''],
+			streetName: ['', Validators.required],
 			houseNumber: [''],
 			city: ['',Validators.required],
-			State: ['', Validators.required],
+			state: ['', Validators.required],
 			zipCode: ['',Validators.required]
 		})
-
+		console.log(this.housingForm);
+		
+		this.showForm = true;
 	}
 
 	get fields() {
@@ -33,6 +39,8 @@ export class HousingInfoComponent implements OnInit {
 	}
 
 	onSubmit() {
+		if(this.housingForm.invalid) return;
+		console.log("Submitted form");
 		
 	}
 

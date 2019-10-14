@@ -1,3 +1,6 @@
+@import '../../../styles.scss';
+
+
 .one-line {
 	margin-left: 2rem;
 	width: 85%;
@@ -6,4 +9,14 @@
 .price {
 	margin-left: 2rem;
 	width: 25rem;
+}
+
+.btn-container {
+	width: 100%;
+	text-align: right;
+
+	button {
+		color: #ffffff;
+		background: $primary;
+	}
 }
