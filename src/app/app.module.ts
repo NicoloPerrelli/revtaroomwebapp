@@ -21,7 +21,7 @@ import { HousingInfoComponent } from './components/housing-info/housing-info.com
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
 	{ path: "dashboard", component: DashboardComponent, children: [
-		{ path: "userBio", component: UserBioComponent },
+		{ path: "user-bio", component: UserBioComponent },
 		{ path: "housing-info", component: HousingInfoComponent }
 	] },
 	{ path: "", redirectTo: "login", pathMatch: "full" }

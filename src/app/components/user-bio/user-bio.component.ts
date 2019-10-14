@@ -8,8 +8,8 @@ import { UserService } from '../../services/user-service/user.service';
   styleUrls: ['./user-bio.component.css']
 })
 export class UserBioComponent implements OnInit {
-	userBioForm: FormGroup;
-	errorTag=false;
+	userBioForm: 	FormGroup;
+	errorTag=		false;
 	username=		"Loading";
 	currentAbtMe=	"Loading";
 	currentNTK=		"Loading";
@@ -25,7 +25,7 @@ export class UserBioComponent implements OnInit {
 		this.userBioForm = this.formBuilder.group({
 			abtMe: [this.currentAbtMe]
 		})
-		
+
 		//check db for any pre existing bio info to fill the current* vars
 		this.userService.getUserProfile().subscribe(
 			(resp) => {
