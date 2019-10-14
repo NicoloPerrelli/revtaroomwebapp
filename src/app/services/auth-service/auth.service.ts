@@ -44,7 +44,7 @@ export class AuthService {
 	}
 
 	logout() {
-		localStorage.removeItem("reimbToken");
+		localStorage.removeItem("revtaToken");
 	}
 
 
