@@ -10,13 +10,22 @@ import { environment as env } from '../../../environments/environment';
 export class UserService {
 
 	constructor(private http: HttpClient) {}
+	getUserProfile = () => {
+		console.log("userService getUserProfile called");
+		return this.http.get(`${env.API_URL}/user-profile`,
+		{headers: {"Authorization": localStorage.getItem('rbs-jwt')},
+		observe: 'response'}).pipe(
+			map(resp => {
+				return resp;
+			})
+		);
+	}
 
-	updateUser = (abtMe: string, NTK: string, gender: string 
-		/*, name:boolean, email:boolean, phone:boolean */) => {
-		let userBio = {abtMe, NTK, gender/*, name, email, phone */}
+	updateUserProfile = (abtMe: string) => {
+		let userProfile = {abtMe}
 		console.log("Whats to be sent");
-		console.log(userBio);
-		return this.http.put(`${env.API_URL}/user-profile`, userBio,
+		console.log(userProfile);
+		return this.http.put(`${env.API_URL}/user-profile`, userProfile,
 		{headers: {"Authorization": localStorage.getItem('rbs-jwt')},
 		observe: 'response'}).pipe(
 			map(resp => {

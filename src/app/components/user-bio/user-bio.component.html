@@ -4,22 +4,25 @@
 		<h2>{{username}}'s Bio</h2>
 	</div>
 	<form [formGroup]="userBioForm" (ngSubmit)="onSubmit()">
-		<div id="userBioAbtMe">
+		<div id="Description">
 			<textarea class="form-control" formControlName="abtMe" placeholder="About me..."
 				style="resize: none;" rows="7" cols="50" maxlength="300"
 				>{{currentAbtMe}}</textarea><!--dont place returns in here because they are read-->
 		</div>
-		<div id="userBioNeedToKnow">
+		<div id="TrainingType">
+			<h4>Traning Type: {{trainingType}}</h4>
+		</div>
+		<!-- <div id="userBioNeedToKnow">
 			<textarea class="form-control" formControlName="needToKnow"
 				placeholder="You Might Want To Know That I..."
 				style="resize: none;" rows="5" cols="50" maxlength="200"
-					>{{currentNTK}}</textarea><!--dont place returns in here because they are read-->
-		</div>
-		<div class="form-group" id="userBioGender">
+					>{{currentNTK}}</textarea>
+		</div> --><!--dont place returns in here because they are read-->
+		<!-- <div class="form-group" id="userBioGender">
 			[<input type="radio" formControlName="gender" value="male"> Male ]
 			[<input type="radio" formControlName="gender" value="female"> Female ]
 			[<input type="radio" formControlName="gender" value="other" checked> Other ]
-		</div>
+		</div> -->
 		<!-- <div class="form-group" id="userBioShow">
 			[<input type="checkbox" formControlName="showName" value="name"> Show Name ]
 			[<input type="checkbox" formControlName="showEmail" value="email"> Show Email ]

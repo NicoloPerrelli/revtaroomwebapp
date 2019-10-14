@@ -10,9 +10,10 @@ import { UserService } from '../../services/user-service/user.service';
 export class UserBioComponent implements OnInit {
 	userBioForm: FormGroup;
 	errorTag=false;
-	username = "Iago";
-	currentAbtMe="";
-	currentNTK="Alergic to peanuts";
+	username=		"Loading";
+	currentAbtMe=	"Loading";
+	currentNTK=		"Loading";
+	trainingType=	"Loading";
 
 	constructor(private formBuilder: FormBuilder, private userService: UserService) {
 		console.log("UserBioComponent instantiating...");
@@ -22,14 +23,21 @@ export class UserBioComponent implements OnInit {
 	ngOnInit() {
 		console.log("In Bio ngOnInit");
 		this.userBioForm = this.formBuilder.group({
-			abtMe: [this.currentAbtMe],
-			needToKnow: [this.currentNTK],
-			gender: ['other']
-			// showName: [false],
-			// showEmail: [false],
-			// showPhone: [false]
+			abtMe: [this.currentAbtMe]
 		})
-		//check db for any pre existing bio info to fill the current* vars HERE
+		
+		//check db for any pre existing bio info to fill the current* vars
+		this.userService.getUserProfile().subscribe(
+			(resp) => {
+				console.log(resp);
+				//username = resp.body;
+				//currentAbtMe = resp.body;
+			},
+			(err) => {
+				console.log("Problem in userBio.Component.ts on get");
+				console.log(err);
+			}
+		)
 		console.log("Leaving Bio ngOnInit");
 	}
 
@@ -39,26 +47,16 @@ export class UserBioComponent implements OnInit {
 
 	onSubmit = () => {
 		console.log("Update Pressed");
-
-		//ready to be sent if we have time!
-		// let name=false,email=false,phone=false;
-		// if(this.fields.showName.value){name=true;}
-		// if(this.fields.showEmail.value){email=true;}
-		// if(this.fields.showPhone.value){phone=true;}
-
 		console.log("Sending to Service");
-		this.userService.updateUser(
-			this.fields.abtMe.value,
-			this.fields.needToKnow.value,
-			this.fields.gender.value
-			//to be added later
-			// name,email,phone
+		this.userService.updateUserProfile(
+			this.fields.abtMe.value
 		).subscribe(
 			(resp) => {
 				console.log(resp);
+				
 			},
 			(err) => {
-				console.log("Problem in userBio.Component.ts");
+				console.log("Problem in userBio.Component.ts on submit");
 				console.log(err);
 			}
 		);
