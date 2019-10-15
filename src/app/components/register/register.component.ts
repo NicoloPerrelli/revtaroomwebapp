@@ -14,33 +14,25 @@ import { ValidatorsService } from 'src/app/services/validator-service/validators
 })
 export class RegisterComponent implements OnInit {
 
-    firstName: string;
-    lastName: string;
-    username: string;
-    email:string;
-	emailError = false;
-	password:string;
-	passError = false;
+  firstName: string;
+  lastName: string;
+  username: string;
+  email:string;
+  password:string;
+  emailError = false;
+  passError = false;
 
 
-    constructor(
-        private formBuilder: FormBuilder,
-        private router: Router,
-        private authenticationService: AuthService,
-        private userService: UserService,
-        private validator: ValidatorsService,
-        private alertService: AlertService
-    ) { 
-        // redirect to home if already logged in
-        //if (this.authenticationService.currentUser$) { 
-        //    this.router.navigate(['/']);
-        //}
-    }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthService,
+    private userService: UserService,
+    private validator: ValidatorsService,
+    private alertService: AlertService
+  ) { }
 
-    ngOnInit() {
-    }
-
-           
+    ngOnInit() { }
 
     // convenience getter for easy access to form fields
     //get fields() { return this.registerForm.controls; }
