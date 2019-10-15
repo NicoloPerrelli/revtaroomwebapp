@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Principal } from 'src/app/models/principal';
-import { User } from 'src/app/models/user';
+
 
 @Injectable({
   providedIn: 'root'
@@ -44,16 +44,16 @@ export class AuthService {
 	}
 
 	logout() {
-		localStorage.removeItem("reimbToken");
+		localStorage.removeItem("revtaToken");
 	}
 
 
 	saveToken(token: string) {
-		localStorage.setItem("reimbToken", token);
+		localStorage.setItem("revtaken", token);
 	}
 
 	getToken():string {
-		return localStorage.getItem("reimbToken");
+		return localStorage.getItem("revtaToken");
 	}
 
 }

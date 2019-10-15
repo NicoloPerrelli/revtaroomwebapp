@@ -5,6 +5,7 @@ import { UserService } from 'src/app/services/user-service/user.service';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
+import { ValidatorsService } from 'src/app/services/validator-service/validators.service';
 
 @Component({
   selector: 'app-register',
@@ -13,54 +14,56 @@ import { AlertService } from 'src/app/services/alert.service';
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm: FormGroup;
-    loading = false;
-    submitted = false;
+    firstName: string;
+    lastName: string;
+    username: string;
+    email:string;
+	emailError = false;
+	password:string;
+	passError = false;
+
 
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
         private authenticationService: AuthService,
         private userService: UserService,
+        private validator: ValidatorsService,
         private alertService: AlertService
     ) { 
         // redirect to home if already logged in
-        if (this.authenticationService.currentUser$) { 
-            this.router.navigate(['/']);
-        }
+        //if (this.authenticationService.currentUser$) { 
+        //    this.router.navigate(['/']);
+        //}
     }
 
     ngOnInit() {
-        this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            username: ['', Validators.required],
-            password: ['', [Validators.required, Validators.minLength(6)]]
-        });
     }
 
+           
+
     // convenience getter for easy access to form fields
-    get fields() { return this.registerForm.controls; }
+    //get fields() { return this.registerForm.controls; }
 
-    onSubmit() {
-        this.submitted = true;
+    submitReg() {
+       // Validation
+       
+		this.emailError = !this.validator.email(this.email);
+		this.passError = !this.validator.password(this.password);
+		if(this.emailError || this.passError) return;
+        
 
-        // stop here if form is invalid
-        if (this.registerForm.invalid) {
-            return;
-        }
+       console.log('Valid registration form');
 
-        this.loading = true;
-        this.userService.register(this.registerForm.value)
-            .pipe(first())
-            .subscribe(
-                data => {
+        this.userService.register(this.email, this.firstName, this.lastName, this.password, this.username)
+            .subscribe((resp) => {
+                console.log(resp);
                     this.alertService.success('Registration successful', true);
                     this.router.navigate(['/login']);
                 },
                 error => {
                     this.alertService.error(error);
-                    this.loading = false;
-                });
+                    
+                })
     }
 }

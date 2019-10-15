@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment as env } from '../../../environments/environment';
 import { User } from 'src/app/models/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   	providedIn: 'root'
@@ -27,7 +28,17 @@ export class UserService {
 		);
 	}
 
-	register(user: User) {
-        return this.http.post(`${env.API_URL}/users/register`, user);
-    }
+	// register(user: User) {
+    //     return this.http.post(`${env.API_URL}/users/register`, user);
+	// }
+	
+	register(email, firstName, lastName, password, username): Observable<any> {
+		let values = {email, firstName, lastName, password, username};
+		return this.http.post(`${env.API_URL}/users/register`, values, { observe: 'response'}).pipe(
+			map(res => {
+				let user = res.body as User;
+				console.log(user);
+			})
+		)
+	}
 }
