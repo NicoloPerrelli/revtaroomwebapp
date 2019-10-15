@@ -30,7 +30,7 @@ export class UserBioComponent implements OnInit {
 		this.userService.getUserProfile().subscribe(
 			(resp) => {
 				console.log(resp);
-				//username = resp.body;
+				// username = resp.body.
 				//currentAbtMe = resp.body;
 			},
 			(err) => {
