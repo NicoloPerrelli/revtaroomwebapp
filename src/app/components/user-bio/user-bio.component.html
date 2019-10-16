@@ -7,8 +7,14 @@
 			<textarea class="form-control" formControlName="abtMe" placeholder="About me..."
 				value={{currentAbtMe}} style="resize: none;" rows="7" cols="50" maxlength="300"></textarea><!--dont place returns in here because they are read-->
 		</div>
-		<div id="TrainingType">
+		<div id="TrainingType" class="form-group">
 			<h4>Traning Type: {{trainingType}}</h4>
+			<select formControlName="training" class="form-control">
+				<option value=1>JAVA</option>
+				<option value=2>DEVOPS</option>
+				<option value=3>C#</option>
+				<option value=4>ANGULAR</option>
+			</select>
 		</div>
 		<hr>
 		<div class="form-group" id="userBioUpdateBtn">
