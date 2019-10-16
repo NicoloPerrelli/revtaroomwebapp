@@ -15,10 +15,10 @@
 		<div class="form-container-row">
 			<div class="form-container-col">
 				<mat-form-field>
-					<input matInput placeholder="Street Name" formControlName="streetName">
+					<input matInput placeholder="Street Address" formControlName="streetAddress">
 				</mat-form-field>
-				<div *ngIf="fields.streetName.errors">
-					<mat-error *ngIf="fields.streetName.errors.required">Street Name is required</mat-error>
+				<div *ngIf="fields.streetAddress.errors">
+					<mat-error *ngIf="fields.streetName.errors.required">Street Address is required</mat-error>
 				</div>
 			</div>
 			<mat-form-field>

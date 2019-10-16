@@ -13,7 +13,7 @@ export class HousingInfoComponent implements OnInit {
 	showForm:boolean = false;
 
 	constructor(
-		private housingInfoService: HousingInfoService,
+		private housingService: HousingInfoService,
 		private formBuilder: FormBuilder)
 	{
 		
@@ -23,7 +23,7 @@ export class HousingInfoComponent implements OnInit {
 		this.housingForm = this.formBuilder.group({
 			pricePerMonth: ['',Validators.required],
 			description: [''],
-			streetName: ['', Validators.required],
+			streetAddress: ['', Validators.required],
 			houseNumber: [''],
 			city: ['',Validators.required],
 			state: ['', Validators.required],
@@ -41,7 +41,18 @@ export class HousingInfoComponent implements OnInit {
 	onSubmit() {
 		if(this.housingForm.invalid) return;
 		console.log("Submitted form");
-		
+
+		let housing: any = {
+			streetAddress: this.fields.streetAddress.value,
+			houseNumber: this.fields.houseNumber.value,
+			city: this.fields.city.value,
+			state: this.fields.state.value,
+			zipCode: this.fields.zipCode.value,
+			pricePerMonth: this.fields.pricePerMonth.value,
+			description: this.fields.description.value
+		}
+
+		this.housingService.sendHousing(housing);
 	}
 
 }

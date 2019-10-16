@@ -44,16 +44,16 @@ export class AuthService {
 	}
 
 	logout() {
-		localStorage.removeItem("revtaToken");
+		localStorage.removeItem("ratjwt");
 	}
 
 
 	saveToken(token: string) {
-		localStorage.setItem("reimbToken", token);
+		localStorage.setItem("ratjwt", token);
 	}
 
 	getToken():string {
-		return localStorage.getItem("reimbToken");
+		return localStorage.getItem("ratjwt");
 	}
 
 }
