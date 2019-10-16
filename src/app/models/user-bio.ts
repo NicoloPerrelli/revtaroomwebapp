@@ -1,25 +1,13 @@
+import { TrainingType } from './training-type';
+
 export class UserBio {
 	id:number;
-	userId:number;
 	abtMe:string;
-	NTK:string;
-	gender:string;
-	/*
-	name:boolean;
-	email:boolean;
-	phone:boolean;
-	*/
+	trainType: TrainingType;
 
-	constructor(userId:number, id?:number, abtMe?:string, NTK?:string, gender?:string){
+	constructor(id:number, abtMe?:string, train?:TrainingType){
 		this.id = id || 0;
-		this.userId = userId;
 		this.abtMe = abtMe || "";
-		this.NTK = NTK || "";
-		this.gender = gender || "other";
-		/*
-		this.name = name ||
-		this.email = email ||
-		this.phone = phone ||
-		*/
+		this.trainType = train || new TrainingType(1,'JAVA');
 	}
 }
