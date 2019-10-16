@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Principal } from 'src/app/models/principal';
-import { User } from 'src/app/models/user';
+
 
 @Injectable({
   providedIn: 'root'

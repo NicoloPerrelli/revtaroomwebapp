@@ -1,52 +1,40 @@
 <mat-toolbar>
-	<span>Revt a Room</span>
+	<span>RevtARoom</span>
 
 	<div class="right-end-toolbar">
-		<span>Register</span>
-		<span>Login</span>
+		<span>login</span>
 	</div>
 
 </mat-toolbar>
 
-<h2>Register</h2>
+<div class="register-container">
 
-<div class="login-container">
+	<span>Register</span>
+        <mat-form-field>
+                <input [(ngModel)]="email" matInput placeholder="Email" type="email">
+            </mat-form-field>
+            <mat-error *ngIf="emailError">Invalid email</mat-error>
+        <mat-form-field>
+                <input [(ngModel)]="firstName" matInput placeholder="FirstName" type="firstname">
+            </mat-form-field>
+        
+            <mat-form-field>
+                <input [(ngModel)]="lastName" matInput placeholder="LastName" type="lastname">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input [(ngModel)]="password" matInput placeholder="Password" type="password">
+            </mat-form-field>
+            <mat-error *ngIf="passwordError">Invalid Password</mat-error>
+
+            <mat-form-field>
+                    <input [(ngModel)]="username" matInput placeholder="Username" type="username">
+                </mat-form-field>
+
     
+	
+	<br>
+
+	<button mat-button (click)="submitReg()">Register</button>
+
 </div>
-
-
-<!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && fields.firstName.errors }" />
-        <div *ngIf="submitted && fields.firstName.errors" class="invalid-feedback">
-            <div *ngIf="fields.firstName.errors.required">First Name is required</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && fields.lastName.errors }" />
-        <div *ngIf="submitted && fields.lastName.errors" class="invalid-feedback">
-            <div *ngIf="fields.lastName.errors.required">Last Name is required</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && fields.email.errors }" />
-        <div *ngIf="submitted && fields.emails.errors" class="invalid-feedback">
-            <div *ngIf="fields.username.errors.required">Username is required</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fields.password.errors }" />
-        <div *ngIf="submitted && fields.password.errors" class="invalid-feedback">
-            <div *ngIf="fields.password.errors.required">Password is required</div>
-            <div *ngIf="fields.password.errors.minlength">Password must be at least 6 characters</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <button [disabled]="loading" class="btn btn-primary">Register</button>
-        <a routerLink="/login" class="btn btn-link">Cancel</a>
-    </div>
-</form> -->
