@@ -54,7 +54,7 @@ mat-toolbar {
 			font-size: 1rem;
 			margin-left: 2rem;
 			cursor: pointer;
-			padding: 0.4rem;
+			padding: 0.4rem 0.6rem;
 		}
 
 		span:hover {
@@ -79,7 +79,7 @@ mat-toolbar {
 	border-radius: 7px;
 	border: 1px solid $dividercolor;
 
-	span {
+	.login-title {
 		display: inline-block;
 		padding: 1rem;
 		font-size: 2rem;

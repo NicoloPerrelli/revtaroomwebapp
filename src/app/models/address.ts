@@ -3,10 +3,10 @@ export class Address {
 	streetAddress: string;
 	houseNumber: string;
 	city: string;
-	State: string;
+	state: string;
 	zipCode: string;
 
-	latitude: number;
-	longitude: number;
+	latitude: string;
+	longitude: string;
 
 }
