@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../services/user-service/user.service';
+import { UserBio } from 'src/app/models/user-bio';
 
 @Component({
   selector: 'app-user-bio',
@@ -10,8 +11,9 @@ import { UserService } from '../../services/user-service/user.service';
 export class UserBioComponent implements OnInit {
 	userBioForm: 	FormGroup;
 	errorTag=		false;
+	endThing;
 	username=		"Loading";
-	currentAbtMe=	"Loading";
+	currentAbtMe;
 	currentNTK=		"Loading";
 	trainingType=	"Loading";
 
@@ -22,22 +24,27 @@ export class UserBioComponent implements OnInit {
 
 	ngOnInit() {
 		console.log("In Bio ngOnInit");
-		this.userBioForm = this.formBuilder.group({
-			abtMe: [this.currentAbtMe]
-		})
+		
 
 		//check db for any pre existing bio info to fill the current* vars
 		this.userService.getUserProfile().subscribe(
 			(resp) => {
 				console.log(resp);
-				// username = resp.body.
-				//currentAbtMe = resp.body;
+				this.endThing = resp.body;
+				this.currentAbtMe = (this.endThing.description);
+				console.log(this.currentAbtMe);
+				this.username = (this.endThing.user.username);
+				console.log(this.username);
+				this.trainingType = (this.endThing.trainingType.name)
 			},
 			(err) => {
 				console.log("Problem in userBio.Component.ts on get");
 				console.log(err);
 			}
 		)
+		this.userBioForm = this.formBuilder.group({
+			abtMe: [this.currentAbtMe]
+		})
 		console.log("Leaving Bio ngOnInit");
 	}
 

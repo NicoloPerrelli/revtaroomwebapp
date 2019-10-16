@@ -14,8 +14,9 @@ export class UserService {
 	constructor(private http: HttpClient) {}
 	getUserProfile = () => {
 		console.log("userService getUserProfile called");
-		return this.http.get(`${env.API_URL}/user-profile`,
-		{headers: {"Authorization": localStorage.getItem('rbs-jwt')},
+		console.log("Using (-"+localStorage.getItem('ratjwt')+"-) as our token");
+		return this.http.get(`${env.API_URL}/profile`,
+		{headers: {"Authorization": localStorage.getItem('ratjwt')},
 		observe: 'response'}).pipe(
 			map(resp => {
 				return resp;
@@ -27,8 +28,8 @@ export class UserService {
 		let userProfile = {abtMe}
 		console.log("Whats to be sent");
 		console.log(userProfile);
-		return this.http.put(`${env.API_URL}/user-profile`, userProfile,
-		{headers: {"Authorization": localStorage.getItem('rbs-jwt')},
+		return this.http.put(`${env.API_URL}/profile`, userProfile,
+		{headers: {"Authorization": localStorage.getItem('ratjwt')},
 		observe: 'response'}).pipe(
 			map(resp => {
 				return resp;
