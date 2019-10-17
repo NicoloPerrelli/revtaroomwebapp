@@ -44,20 +44,22 @@ export class AuthService {
 	}
 
 	logout() {
-		localStorage.removeItem('revtaToken');
+
+		localStorage.removeItem("ratjwt");
 	}
 
 
 	saveToken(token: string) {
-		localStorage.setItem('revtaToken', token);
+
+		localStorage.setItem('ratjwt', token);
 	}
 
 	getToken():string {
-		return localStorage.getItem('revtaToken');
+		return localStorage.getItem("ratjwt");
 	}
 
 	isAuthenticated(): boolean {
-		const token = localStorage.getItem('revtaToken');
+		const token = localStorage.getItem('ratjwt');
 		// Check whether the token is expired and return
 		// true or false
 		if (token){
@@ -66,4 +68,6 @@ export class AuthService {
 		return false;
 	  }
 	}
+
+	
 
