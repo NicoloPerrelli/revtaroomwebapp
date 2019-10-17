@@ -6,7 +6,6 @@
 
 		<div class="form-container-row">
 			<mat-form-field>
-
 				<input matInput placeholder="Street Address" formControlName="streetAddress">
 			</mat-form-field>
 			<!-- <div *ngIf="fields.streetAddress.errors">
@@ -25,7 +24,7 @@
 				<mat-error *ngIf="fields.city.errors.required">City is required</mat-error>
 			</div> -->
 			<mat-form-field>
-				<mat-select placeholder="State" formControlName="state">
+				<mat-select [disabled]="!edit" placeholder="State" formControlName="state">
 				<mat-option *ngFor="let item of housingService.states" value={{item}}>{{ item }}</mat-option>
 				</mat-select>
 			</mat-form-field>
@@ -36,7 +35,7 @@
 	
 		<br>
 	
-		<h4>Housing info</h4>
+		<h4> {{ btnTitle }} </h4>
 		
 		<mat-form-field class="price">
 			<input matInput placeholder="Cost for a room in dollars" type="number" formControlName="pricePerMonth">
@@ -52,7 +51,7 @@
 	</div>
 
 	<div class="btn-container">
-		<button mat-button type="submit">Add Housing-Info</button>
+		<button [disabled]="!edit" mat-button type="submit"> Add {{ btnTitle }}</button>
 	</div>
 
 

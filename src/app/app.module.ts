@@ -32,7 +32,7 @@ import { AnnounceRoomViewComponent } from './components/announce-room-view/annou
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
 	{ path: "register", component: RegisterComponent },
-	{ path: "dashboard", component: DashboardComponent, canActivate: [Guard], children: [
+	{ path: "dashboard", component: DashboardComponent, children: [
 		{ path: "home", component: HomeComponent },
 		{ path: "userBio", component: UserBioComponent },
 		{ path: "map", component: MapComponent },

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HousingInfoService } from 'src/app/services/housing-service/housing-info.service';
 import { HousingInfo } from 'src/app/models/housing-info';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-announce-room',
@@ -9,9 +10,20 @@ import { HousingInfo } from 'src/app/models/housing-info';
 })
 export class AnnounceRoomComponent implements OnInit {
 
-	constructor(private housingService: HousingInfoService) { }
+	housingToView: any;
+	edit: boolean = true;
+
+	constructor(
+		private route: ActivatedRoute,
+		private housingService: HousingInfoService) { }
 
 	ngOnInit() {
+		this.route.queryParams.subscribe((housing) => {
+			console.log("In AnnounceRoomComponent...");
+			console.log("Housing", housing);
+			this.housingToView = housing;
+			this.edit = false;
+		});
 	}
 
 	onSubmit(housing: HousingInfo) {

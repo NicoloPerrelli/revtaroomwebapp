@@ -5,4 +5,4 @@
 	Let other coders know. Fill the form bellow and make your room visible to Revature employees.
 </p>
 
-<app-housing-form (formEvent)="onSubmit($event)"></app-housing-form>
+<app-housing-form [btnTitle]="'Room'" [edit]="edit" [housingToView]="housingToView" (formEvent)="onSubmit($event)"></app-housing-form>

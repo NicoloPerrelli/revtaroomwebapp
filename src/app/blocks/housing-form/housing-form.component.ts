@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HousingInfoService } from '../../services/housing-service/housing-info.service';
 import { Address } from 'src/app/models/address';
@@ -9,8 +9,11 @@ import { HousingInfo } from 'src/app/models/housing-info';
   templateUrl: './housing-form.component.html',
   styleUrls: ['./housing-form.component.scss']
 })
-export class HousingFormComponent implements OnInit {
+export class HousingFormComponent implements OnInit, OnChanges, AfterViewInit {
 
+	@Input("housingToView") housingToView: any = null;
+	@Input("edit") edit = true; 
+	@Input("btnTitle") btnTitle = "Housing";
 	@Output("formEvent") formEvent = new EventEmitter<HousingInfo>();
 
 	housingForm: FormGroup;
@@ -23,7 +26,14 @@ export class HousingFormComponent implements OnInit {
 		
 	}
 
+	ngOnChanges() {
+		console.log("In ngOnChanges...");
+		console.log("housing", this.housingToView);
+		console.log("edit", this.edit);
+	}
+
 	ngOnInit() {
+		console.log("In ngOnInit");
 		this.housingForm = this.formBuilder.group({
 			pricePerMonth: ['',Validators.required],
 			description: [''],
@@ -34,12 +44,34 @@ export class HousingFormComponent implements OnInit {
 			zipCode: ['']
 		})
 		console.log(this.housingForm);
-		
 		this.showForm = true;
 	}
 
 	get fields() {
 		return this.housingForm.controls;
+	}
+
+	ngAfterViewInit() {
+		console.log("In ngAfterViewInit...");
+		// Filling Form if data was passed to this component
+		if(this.housingToView) {
+			console.log("About to set fields");
+			console.log(this.housingForm);
+			this.housingForm.controls.streetAddress.setValue(this.housingToView.streetAddress);
+			this.housingForm.controls.houseNumber.setValue(this.housingToView.houseNumber);
+			this.housingForm.controls.city.setValue(this.housingToView.city);
+			this.housingForm.controls.state.setValue(this.housingToView.city);
+			this.housingForm.controls.pricePerMonth.setValue(this.housingToView.pricePerMonth);
+			this.housingForm.controls.description.setValue(this.housingToView.description);
+		}
+
+		// Disable user to edit fields
+		if(!this.edit) {
+			let el = document.querySelectorAll("input");
+			console.log("html",el);
+			el.forEach(item => item.setAttribute("disabled", "disabled"));
+			document.querySelector("textarea").setAttribute("disabled", "disabled");
+		}
 	}
 
 	onSubmit() {
