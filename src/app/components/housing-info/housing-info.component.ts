@@ -15,7 +15,7 @@ export class HousingInfoComponent implements OnInit {
 	showForm:boolean = false;
 
 	constructor(
-		private housingService: HousingInfoService,
+		public housingService: HousingInfoService,
 		private formBuilder: FormBuilder)
 	{
 		
