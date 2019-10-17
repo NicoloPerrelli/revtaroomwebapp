@@ -1,11 +1,14 @@
 export class TrainingType {
 
-	trainingId: number;
-	trainingType: string;
+	id: number;
+	name: string;
 
 	constructor(id: number, type: string) {
-		this.trainingId = id;
-		this.trainingType = type;
+		this.id = id;
+		this.name = type;
 	}
 
+	toString() {
+		return "TrainingType [trainingId=" + this.id + ", trainingType=" + this.name + "]";
+	}
 }

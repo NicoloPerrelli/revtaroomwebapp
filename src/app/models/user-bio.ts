@@ -2,12 +2,12 @@ import { TrainingType } from './training-type';
 
 export class UserBio {
 	id:number;
-	abtMe:string;
-	trainType: TrainingType;
+	description:string;
+	trainingType: TrainingType;
 
-	constructor(id:number, abtMe?:string, train?:TrainingType){
-		this.id = id || 0;
-		this.abtMe = abtMe || "";
-		this.trainType = train || new TrainingType(1,'JAVA');
+	constructor(id?:number, abtMe?:string, train?:TrainingType){
+		this.id = id || 1;
+		this.description = abtMe || " ";
+		this.trainingType = train || new TrainingType(4,'ANGULAR');
 	}
 }

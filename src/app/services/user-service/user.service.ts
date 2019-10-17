@@ -5,6 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../../environments/environment';
 import { User } from 'src/app/models/user';
 import { Observable } from 'rxjs';
+import { TrainingType } from 'src/app/models/training-type';
+import { stringify } from '@angular/compiler/src/util';
+import { UserBio } from 'src/app/models/user-bio';
 
 @Injectable({
   	providedIn: 'root'
@@ -24,10 +27,15 @@ export class UserService {
 		);
 	}
 
-	updateUserProfile = (abtMe: string) => {
-		let userProfile = {abtMe}
+	updateUserProfile = (description:string, trainingType: TrainingType) => {
 		console.log("Whats to be sent");
-		console.log(userProfile);
+		console.log({description, trainingType});
+		let userProfile = {
+			"description":description,
+			"trainingType":(trainingType).toString()
+
+		};
+		console.log("With - " + localStorage.getItem('ratjwt'));
 		return this.http.put(`${env.API_URL}/profile`, userProfile,
 		{headers: {"Authorization": localStorage.getItem('ratjwt')},
 		observe: 'response'}).pipe(

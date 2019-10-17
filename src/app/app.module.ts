@@ -17,47 +17,49 @@ import { NavbarService } from './services/navbar-service/navbar.service';
 
 // Components
 import { AppComponent } from './app.component';
+import { MapComponent } from './components/map/map.component';
 import { LoginComponent } from './components/login/login.component';
+import { EmailComponent } from './components/email/email.component';
 import { UserBioComponent } from './components/user-bio/user-bio.component';
+import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HousingInfoComponent } from './components/housing-info/housing-info.component';
-import { MapComponent } from './components/map/map.component';
-import { RegisterComponent } from './components/register/register.component';
 
 
 
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
+	{ path: "email", component: EmailComponent },
 	{ path: "register", component: RegisterComponent },
 	{ path: "dashboard", component: DashboardComponent, children: [
+		{ path: "map", component: MapComponent },
 		{ path: "user-bio", component: UserBioComponent },
-		{ path: "housing-info", component: HousingInfoComponent },
-		{ path: "map", component: MapComponent }
+		{ path: "housing-info", component: HousingInfoComponent }
 	] },
 	{ path: "", redirectTo: "login", pathMatch: "full" }
 ]
 
 @NgModule({
 	declarations: [
+		MapComponent,
 		AppComponent,
 		LoginComponent,
+		EmailComponent,
 		UserBioComponent,
+		RegisterComponent,
 		DashboardComponent,
-		HousingInfoComponent,
-		MapComponent,
-		RegisterComponent
-		
+		HousingInfoComponent
 	],
 	imports:[
 		FormsModule,
-		LeafletModule.forRoot(),
-		LeafletMarkerClusterModule.forRoot(),
 		BrowserModule,
 		MaterialModule,
 		HttpClientModule,
 		ReactiveFormsModule,
+		LeafletModule.forRoot(),
 		BrowserAnimationsModule,
-		RouterModule.forRoot(routes)
+		RouterModule.forRoot(routes),
+		LeafletMarkerClusterModule.forRoot()
 	],
 	providers:[
 		NavbarService

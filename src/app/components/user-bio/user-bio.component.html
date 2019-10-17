@@ -5,7 +5,7 @@
 	<form [formGroup]="userBioForm" (ngSubmit)="onSubmit()">
 		<div id="Description">
 			<textarea class="form-control" formControlName="abtMe" placeholder="About me..."
-				value={{currentAbtMe}} style="resize: none;" rows="7" cols="50" maxlength="300"></textarea><!--dont place returns in here because they are read-->
+				value={{currentAbtMe}} style="resize: none;" rows="7" cols="50" maxlength="300">{{currentAbtMe}}</textarea>
 		</div>
 		<div id="TrainingType" class="form-group">
 			<h4>Traning Type: {{trainingType}}</h4>
