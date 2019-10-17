@@ -18,11 +18,11 @@ phases:
     commands:
        -echo Moving dist folder contents to pre-configured S3 bucket
        - aws s3 rm s3://revtaroomapi-input --recursive
-       - aws s3 cp admin s3://revtaroomapi-input/revtARoomWebApp --recursive
+       - aws s3 cp dist s3://revtaroomapi-input/revtARoomWebApp --recursive
        -echo dist folder contents successfully uploaded to bucket
 
 artifacts:
   files:
     - '*/**'
-  base-directory: 'admin*'
+  base-directory: 'dist*'
   discard-paths: yes
