@@ -24,17 +24,30 @@ import { UserBioComponent } from './components/user-bio/user-bio.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HousingInfoComponent } from './components/housing-info/housing-info.component';
+<<<<<<< HEAD
 
+=======
+import { MapComponent } from './components/map/map.component';
+import { RegisterComponent } from './components/register/register.component';
+import { Guard }  from 'src/app/services/guard';
+>>>>>>> 3a96ccbf6912090f4aa2a2febf455b753d875115
 
 
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
 	{ path: "email", component: EmailComponent },
 	{ path: "register", component: RegisterComponent },
+<<<<<<< HEAD
 	{ path: "dashboard", component: DashboardComponent, children: [
 		{ path: "map", component: MapComponent },
 		{ path: "user-bio", component: UserBioComponent },
 		{ path: "housing-info", component: HousingInfoComponent }
+=======
+	{ path: "dashboard", component: DashboardComponent, canActivate: [Guard], children: [
+		{ path: "userBio", component: UserBioComponent },
+		{ path: "housing-info", component: HousingInfoComponent },
+		{ path: "map", component: MapComponent }
+>>>>>>> 3a96ccbf6912090f4aa2a2febf455b753d875115
 	] },
 	{ path: "", redirectTo: "login", pathMatch: "full" }
 ]
@@ -62,7 +75,9 @@ const routes: Routes = [
 		LeafletMarkerClusterModule.forRoot()
 	],
 	providers:[
-		NavbarService
+		NavbarService,
+		Guard
+
 	],
 	bootstrap:[AppComponent]
 })

@@ -55,4 +55,16 @@ export class AuthService {
 		return localStorage.getItem("ratjwt");
 	}
 
-}
+	isAuthenticated(): boolean {
+		const token = localStorage.getItem('ratjwt');
+		// Check whether the token is expired and return
+		// true or false
+		if (token){
+		return true;
+		}
+		return false;
+	  }
+	}
+
+	
+

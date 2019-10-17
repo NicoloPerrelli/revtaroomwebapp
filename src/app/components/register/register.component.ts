@@ -14,28 +14,28 @@ import { ValidatorsService } from 'src/app/services/validator-service/validators
 })
 export class RegisterComponent implements OnInit {
 
-  firstName: string;
-  lastName: string;
-  username: string;
-  email:string;
-  password:string;
-  emailError = false;
-  passError = false;
+    firstName: string;
+    lastName: string;
+    username: string;
+    email:string;
+	emailError = false;
+	password:string;
+    passError = false;
+    
+    errorMessage:string;
 
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private authenticationService: AuthService,
-    private userService: UserService,
-    private validator: ValidatorsService,
-    private alertService: AlertService
-  ) { }
+    constructor(
+        private router: Router,
+        private userService: UserService,
+        private validator: ValidatorsService,
+        private alertService: AlertService
+    ) 
+    { 
+    }
 
-    ngOnInit() { }
-
-    // convenience getter for easy access to form fields
-    //get fields() { return this.registerForm.controls; }
+    ngOnInit() {
+    }
 
     submitReg() {
        // Validation
@@ -54,8 +54,14 @@ export class RegisterComponent implements OnInit {
                     this.router.navigate(['/login']);
                 },
                 error => {
+                    this.errorMessage = error.message as string;
+                    alert(this.errorMessage);
                     this.alertService.error(error);
-                    
                 })
     }
+
+    goToLogin() {
+        this.router.navigate(["/login"]);
+    }
+
 }
