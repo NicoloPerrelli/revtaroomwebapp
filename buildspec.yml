@@ -20,8 +20,9 @@ phases:
        -aws s3 sync --delete dist/revtARoomWebApp s3://revtaroomapi-input
        -echo dist folder contents successfully uploaded to bucket on `date`
 
+
 artifacts:
   files:
-    - '**/*'
+    - '*/**'
   base-directory: 'dist*'
   discard-paths: yes
