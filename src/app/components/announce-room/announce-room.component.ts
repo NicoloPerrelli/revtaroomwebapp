@@ -1,25 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { HousingInfoService } from '../../services/housing-service/housing-info.service';
+import { HousingInfoService } from 'src/app/services/housing-service/housing-info.service';
 import { HousingInfo } from 'src/app/models/housing-info';
 
 @Component({
-  selector: 'app-housing-info',
-  templateUrl: './housing-info.component.html',
-  styleUrls: ['./housing-info.component.scss']
+  selector: 'app-announce-room',
+  templateUrl: './announce-room.component.html',
+  styleUrls: ['./announce-room.component.scss']
 })
-export class HousingInfoComponent implements OnInit {
+export class AnnounceRoomComponent implements OnInit {
 
-	constructor(private housingService: HousingInfoService) {
-
-	}
+	constructor(private housingService: HousingInfoService) { }
 
 	ngOnInit() {
-		
 	}
 
 	onSubmit(housing: HousingInfo) {
-
-		console.log(housing);
 
 		this.housingService.getCoordinates(housing)
 		.subscribe((res:any) => {
@@ -28,7 +23,7 @@ export class HousingInfoComponent implements OnInit {
 			housing.address.latitude = coords.lat + "";
 			housing.address.longitude = coords.lng + "";
 
-			this.housingService.sendHousing(housing).subscribe(
+			this.housingService.sendRoomForRent(housing).subscribe(
 			(res) => {
 				console.log(res);
 			}, err => {

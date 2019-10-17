@@ -27,21 +27,30 @@ export class HousingInfoService {
 		return this.http.get(`${env.GEO_CODE}${query}${env.GEO_CODE_KEY}`);
 	}
 
-	sendHousing(housing: HousingInfo) {
-		let token = this.authService.getToken();
-		token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIyMSIsInN1YiI6ImlhZ29AZ21haWwuY29tIiwiaXNzIjoicmV2YXR1cmUiLCJyb2xlIjoiUm9sZSBbcm9sZUlkPTMsIHJvbGVOYW1lPVVTRVJdIiwiaWF0IjoxNTcxMTk1MTYxLCJleHAiOjE1NzEyODE1NjF9.HRNmQ2fhcD7cHQbfv4JwjB50TuAGgbAAzsaxPDuOLSIzB6Gtr84LeFKD_YtpbkwAAZwlJbVOLtKRNy6zKtGEqw"
-		return this.http.post(`${env.API_URL}/housing`, housing, { observe: 'response', headers: { "Authorization": token }})
-		.toPromise()
-	}
-
 	private encodeAddress(addr: Address) {
 		let str = addr.streetAddress + " " +  addr.city + " " + addr.state + " United States";
 		// str = encodeURIComponent(str);
 		str = str.replace(new RegExp(" ", 'g'), "+");
 		console.log(str);
-		return str
+		return str;
 	}
 
-	
+	// Housing
+
+	sendHousing(housing: HousingInfo) {
+		let token = this.authService.getToken();
+		return this.http.post(`${env.API_URL}/housing`, housing, { observe: 'response', headers: { "Authorization": token }});
+	}
+
+	// Room for Rent
+
+	sendRoomForRent(housing: HousingInfo) {
+		let token = this.authService.getToken();
+		return this.http.post(`${env.API_URL}/rent-room`, housing, { observe: 'response', headers: { "Authorization": token }});
+	}
+
+	getRoomByUserId() {
+		return this.http.get(`${env.API_URL}/rooms/userId`);
+	}
 
 }

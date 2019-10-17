@@ -14,6 +14,7 @@ import { MaterialModule } from './modules/material.module';
 
 // Services
 import { NavbarService } from './services/navbar-service/navbar.service';
+import { Guard }  from 'src/app/services/guard';
 
 // Components
 import { AppComponent } from './app.component';
@@ -23,19 +24,26 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HousingInfoComponent } from './components/housing-info/housing-info.component';
 import { MapComponent } from './components/map/map.component';
 import { RegisterComponent } from './components/register/register.component';
-import { Guard }  from 'src/app/services/guard';
-
+import { HomeComponent } from './components/home/home.component';
+import { HousingFormComponent } from './blocks/housing-form/housing-form.component';
+import { AnnounceRoomComponent } from './components/announce-room/announce-room.component';
+import { AnnounceRoomViewComponent } from './components/announce-room-view/announce-room-view.component';
 
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
 	{ path: "register", component: RegisterComponent },
 	{ path: "dashboard", component: DashboardComponent, canActivate: [Guard], children: [
+		{ path: "home", component: HomeComponent },
 		{ path: "userBio", component: UserBioComponent },
+		{ path: "map", component: MapComponent },
 		{ path: "housing-info", component: HousingInfoComponent },
-		{ path: "map", component: MapComponent }
+		{ path: "announce", component: AnnounceRoomComponent },
+		{ path: "announcements", component: AnnounceRoomViewComponent },
+		{ path: "", redirectTo: "home", pathMatch: "full" },
 	] },
 	{ path: "", redirectTo: "login", pathMatch: "full" }
 ]
+
 
 @NgModule({
 	declarations: [
@@ -45,7 +53,11 @@ const routes: Routes = [
 		DashboardComponent,
 		HousingInfoComponent,
 		MapComponent,
-		RegisterComponent
+		RegisterComponent,
+		HomeComponent,
+		HousingFormComponent,
+		AnnounceRoomComponent,
+		AnnounceRoomViewComponent
 		
 	],
 	imports:[

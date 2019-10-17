@@ -17,6 +17,7 @@ export class MapService {
 		
 		let addressPoints: any[] = this.mapHousingIntoCoords(list);
 
+		// Create cluster object and define its configuration
 		let markers = L.markerClusterGroup({ 
 			chunkedLoading: true,
 			iconCreateFunction: (cluster) => {
@@ -34,6 +35,8 @@ export class MapService {
 			}
 		});
 
+
+		// Get addresses points and insert them in the cluster group
 		for(let i=0;i<addressPoints.length;i++) {
 			let a = addressPoints[i];
 			let title = a[2];
@@ -44,6 +47,7 @@ export class MapService {
 
 		console.log("markers", markers);
 		
+		// Add all the points to the map
 		map.addLayer(markers);
 		
 	}
@@ -62,6 +66,10 @@ export class MapService {
 
 	getHousing() {
 		return this.http.get(`${env.API_URL}/housing`);
+	}
+
+	getRooms() {
+		return this.http.get(`${env.API_URL}/rooms`);
 	}
 
 	mockGetAddresses(map:L.Map) {
