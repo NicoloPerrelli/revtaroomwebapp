@@ -37,7 +37,7 @@
 				<mat-option *ngFor="let item of housingService.states" value={{item}}>{{ item }}</mat-option>
 				</mat-select>
 			</mat-form-field>
-			<div *ngIf="submitted && fields.state.errors">
+			<div *ngIf="fields.state.errors">
 				<mat-error *ngIf="fields.state.errors.required">State is required</mat-error>	
 			</div>
 		</div>

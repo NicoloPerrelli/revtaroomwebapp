@@ -20,7 +20,9 @@ export class RegisterComponent implements OnInit {
     email:string;
 	emailError = false;
 	password:string;
-	passError = false;
+    passError = false;
+    
+    errorMessage:string;
 
 
     constructor(
@@ -52,9 +54,10 @@ export class RegisterComponent implements OnInit {
                     this.router.navigate(['/login']);
                 },
                 error => {
+                    this.errorMessage = error.message as string;
+                    alert(this.errorMessage);
                     this.alertService.error(error);
-                    
-            })
+                })
     }
 
     goToLogin() {
