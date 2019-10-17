@@ -24,26 +24,16 @@ export class RegisterComponent implements OnInit {
 
 
     constructor(
-        private formBuilder: FormBuilder,
         private router: Router,
-        private authenticationService: AuthService,
         private userService: UserService,
         private validator: ValidatorsService,
         private alertService: AlertService
-    ) { 
-        // redirect to home if already logged in
-        //if (this.authenticationService.currentUser$) { 
-        //    this.router.navigate(['/']);
-        //}
+    ) 
+    { 
     }
 
     ngOnInit() {
     }
-
-           
-
-    // convenience getter for easy access to form fields
-    //get fields() { return this.registerForm.controls; }
 
     submitReg() {
        // Validation

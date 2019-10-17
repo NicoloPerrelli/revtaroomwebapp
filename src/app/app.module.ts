@@ -23,13 +23,13 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HousingInfoComponent } from './components/housing-info/housing-info.component';
 import { MapComponent } from './components/map/map.component';
 import { RegisterComponent } from './components/register/register.component';
-
+import { Guard }  from 'src/app/services/guard';
 
 
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
 	{ path: "register", component: RegisterComponent },
-	{ path: "dashboard", component: DashboardComponent, children: [
+	{ path: "dashboard", component: DashboardComponent, canActivate: [Guard], children: [
 		{ path: "userBio", component: UserBioComponent },
 		{ path: "housing-info", component: HousingInfoComponent },
 		{ path: "map", component: MapComponent }
@@ -60,7 +60,9 @@ const routes: Routes = [
 		RouterModule.forRoot(routes)
 	],
 	providers:[
-		NavbarService
+		NavbarService,
+		Guard
+
 	],
 	bootstrap:[AppComponent]
 })

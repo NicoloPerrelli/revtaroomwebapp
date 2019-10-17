@@ -49,11 +49,21 @@ export class AuthService {
 
 
 	saveToken(token: string) {
-		localStorage.setItem("revtaken", token);
+		localStorage.setItem('revtaToken', token);
 	}
 
 	getToken():string {
-		return localStorage.getItem("revtaToken");
+		return localStorage.getItem('revtaToken');
 	}
 
-}
+	isAuthenticated(): boolean {
+		const token = localStorage.getItem('revtaToken');
+		// Check whether the token is expired and return
+		// true or false
+		if (token){
+		return true;
+		}
+		return false;
+	  }
+	}
+
