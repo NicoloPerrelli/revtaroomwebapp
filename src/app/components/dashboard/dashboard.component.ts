@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarService } from 'src/app/services/navbar-service/navbar.service';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +12,10 @@ export class DashboardComponent implements OnInit {
 
 	opened: boolean = true;
 
-	constructor(private navbar: NavbarService) {
+	constructor(
+		private router: Router,
+		private authService: AuthService,
+		private navbar: NavbarService) {
 		
 	}
 
@@ -21,6 +26,11 @@ export class DashboardComponent implements OnInit {
 		console.log("Burguer");
 		this.opened = !this.opened;
 	}
+
+	logout() {
+		this.authService.logout();
+		this.router.navigate(['/login']);
+	} 
 
 	
 
