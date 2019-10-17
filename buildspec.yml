@@ -18,7 +18,7 @@ phases:
     commands:
        -echo Moving dist folder contents to pre-configured S3 bucket
        -aws s3 sync --delete dist/revtARoomWebApp s3://revtaroomapi-input
-       -echo dist folder contents successfully uploaded to bucket
+       -echo dist folder contents successfully uploaded to bucket on `date`
 
 artifacts:
   files:
