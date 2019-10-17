@@ -54,7 +54,7 @@ mat-toolbar {
 			font-size: 1rem;
 			margin-left: 2rem;
 			cursor: pointer;
-			padding: 0.4rem;
+			padding: 0.4rem 0.6rem;
 		}
 
 		span:hover {
@@ -63,6 +63,46 @@ mat-toolbar {
 
 	}
 }
+
+
+/* Login and Register */
+.login-container {
+	display: flex;
+	flex-direction: column;
+	
+	margin: 0 auto;
+	margin-top: 10rem;
+	padding: 2rem 1rem;
+
+	width: 25rem;
+	max-width: 95%;
+
+	border-radius: 7px;
+	border: 1px solid $dividercolor;
+
+	.login-title {
+		display: inline-block;
+		padding: 1rem;
+		font-size: 2rem;
+	}
+
+	mat-form-field {
+		padding: 0 1rem;
+		
+	}
+
+
+
+	button {
+		width: 50%;
+		margin: 0 auto;
+		color: #ffffff;
+		background: $primary;
+	}
+
+}
+
+
 
 /* Dashboard Content */
 .dashboard-container {

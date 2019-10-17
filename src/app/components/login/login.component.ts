@@ -15,7 +15,10 @@ export class LoginComponent implements OnInit {
 	password:string;
 	passError = false;
 
-	constructor(private authService: AuthService, private validator: ValidatorsService, private router: Router) { }
+	constructor(
+		private router: Router,
+		private authService: AuthService,
+		private validator: ValidatorsService) { }
 
 	ngOnInit() {
 	}
@@ -34,7 +37,7 @@ export class LoginComponent implements OnInit {
 		this.authService.authenticate(this.email, this.password)
 		.subscribe((res) => {
 			console.log(res);
-			this.router.navigate(['/dashboard']);
+			this.router.navigate(["/dashboard"]);
 		},
 		(err) => {
 			console.log(err);
