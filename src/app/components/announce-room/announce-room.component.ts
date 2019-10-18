@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HousingInfoService } from 'src/app/services/housing-service/housing-info.service';
 import { HousingInfo } from 'src/app/models/housing-info';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-announce-room',
@@ -14,6 +15,7 @@ export class AnnounceRoomComponent implements OnInit {
 	edit: boolean = true;
 
 	constructor(
+		private _snackbar: MatSnackBar,
 		private route: ActivatedRoute,
 		private housingService: HousingInfoService) { }
 
@@ -39,12 +41,19 @@ export class AnnounceRoomComponent implements OnInit {
 			this.housingService.sendRoomForRent(housing).subscribe(
 			(res) => {
 				console.log(res);
+				this.openSnackBar("You successfully announced a room!");
 			}, err => {
 				console.log(err);
 			});
 
 		}, (err) => {
 			console.log(err);
+		});
+	}
+
+	openSnackBar(message: string) {
+		this._snackbar.open(message, "", {
+		  duration: 2000,
 		});
 	}
 

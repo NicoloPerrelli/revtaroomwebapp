@@ -13,6 +13,8 @@ export class AuthService {
 	private currentUserSubject: BehaviorSubject<Principal>;
 	currentUser$: Observable<Principal>;
 
+	principal:Principal;
+
 	constructor(private http: HttpClient) {
 		this.currentUserSubject = new BehaviorSubject<Principal>(null);
 	    this.currentUser$ = this.currentUserSubject.asObservable();
@@ -24,6 +26,7 @@ export class AuthService {
 			map(res => {
 				let user = res.body as Principal;
 				console.log(user);
+				this.principal = user;
 				this.saveToken(res.headers.get("Authorization"));
 				this.currentUserSubject.next(user);
 			})
@@ -37,6 +40,7 @@ export class AuthService {
 			map(res => {
 				let user = res.body as Principal;
 				console.log(user);
+				this.principal = user;
 				this.saveToken(res.headers.get("Authorization"));
 				this.currentUserSubject.next(user);
 			})

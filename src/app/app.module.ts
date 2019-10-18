@@ -18,7 +18,6 @@ import { Guard }  from 'src/app/services/guard';
 
 // Components
 import { AppComponent } from './app.component';
-import { Guard }  from 'src/app/services/guard';
 import { MapComponent } from './components/map/map.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -29,6 +28,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HousingInfoComponent } from './components/housing-info/housing-info.component';
 import { AnnounceRoomComponent } from './components/announce-room/announce-room.component';
 import { AnnounceRoomViewComponent } from './components/announce-room-view/announce-room-view.component';
+import { HousingFormComponent } from './blocks/housing-form/housing-form.component';
 
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
@@ -38,10 +38,10 @@ const routes: Routes = [
 		{ path: "map", component: MapComponent },
 		{ path: "home", component: HomeComponent },
 		{ path: "userBio", component: UserBioComponent },
-		{ path: "", redirectTo: "home", pathMatch: "full" },
 		{ path: "announce", component: AnnounceRoomComponent },
 		{ path: "housing-info", component: HousingInfoComponent },
-		{ path: "announcements", component: AnnounceRoomViewComponent }
+		{ path: "announcements", component: AnnounceRoomViewComponent },
+		{ path: "", redirectTo: "home", pathMatch: "full" }
 	] },
 	{ path: "", redirectTo: "login", pathMatch: "full" }
 ]

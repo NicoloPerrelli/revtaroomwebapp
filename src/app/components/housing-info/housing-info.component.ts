@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HousingInfoService } from '../../services/housing-service/housing-info.service';
 import { HousingInfo } from 'src/app/models/housing-info';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-housing-info',
@@ -9,7 +10,9 @@ import { HousingInfo } from 'src/app/models/housing-info';
 })
 export class HousingInfoComponent implements OnInit {
 
-	constructor(private housingService: HousingInfoService) {
+	constructor(
+		private _snackbar: MatSnackBar,
+		private housingService: HousingInfoService) {
 
 	}
 
@@ -31,14 +34,21 @@ export class HousingInfoComponent implements OnInit {
 			this.housingService.sendHousing(housing).subscribe(
 			(res) => {
 				console.log(res);
-				alert("Housing was successfully added!");
+				this.openSnackBar("You successfully added a new housing.");
 			}, err => {
 				console.log(err);
-				alert("Some error happened. Please try again later.");
+				this.openSnackBar("Some error happened. Please try again later.");
 			});
 
 		}, (err) => {
 			console.log(err);
+		});
+	}
+
+	openSnackBar(message: string) {
+		this._snackbar.open(message, "", {
+		  duration: 2000,
+		  
 		});
 	}
 

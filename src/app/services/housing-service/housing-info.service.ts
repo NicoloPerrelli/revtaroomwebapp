@@ -3,9 +3,10 @@ import { UsStates } from '../../utils/us-states';
 import { HttpClient } from '@angular/common/http';
 import { HousingInfo } from 'src/app/models/housing-info';
 import { environment as env } from '../../../environments/environment';
-// import { map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { AuthService } from '../auth-service/auth.service';
 import { Address } from 'src/app/models/address';
+import { RoomToRent } from 'src/app/models/RoomToRent';
 
 
 @Injectable({
@@ -47,16 +48,18 @@ export class HousingInfoService {
 
 	// Room for Rent
 	getRooms() {
-		return this.http.get(`${env.API_URL}/rooms`);
+		return this.http.get(`${env.API_URL}/rent`);
 	}
 
-	getRoomByUserId() {
-		return this.http.get(`${env.API_URL}/rooms/userId`);
+	getRoomsByUserId() {
+		let token = this.authService.getToken();
+		let userId = this.authService.principal.id;
+		return this.http.get(`${env.API_URL}/rent/${userId}`, { observe: 'response', headers: { "Authorization": token }});
 	}
 
 	sendRoomForRent(housing: HousingInfo) {
 		let token = this.authService.getToken();
-		return this.http.post(`${env.API_URL}/rent-room`, housing, { observe: 'response', headers: { "Authorization": token }});
+		return this.http.post(`${env.API_URL}/rent`, housing, { observe: 'response', headers: { "Authorization": token }});
 	}
 
 }
