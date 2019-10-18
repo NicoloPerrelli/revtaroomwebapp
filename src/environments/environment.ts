@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   API_URL: 'http://localhost:8080/revtaroom',
+  // API_URL: 'RevatureHousingAppEb-env.cp2r98h44c.us-east-1.elasticbeanstalk.com/revtaroom',
   GEO_CODE: 'https://api.opencagedata.com/geocode/v1/json?q=',
   GEO_CODE_KEY: '&key=54a4611db0364ab6bfa0dad926150ca1'
 };
