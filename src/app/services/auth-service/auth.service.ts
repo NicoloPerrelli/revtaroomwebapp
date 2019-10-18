@@ -44,14 +44,11 @@ export class AuthService {
 	}
 
 	logout() {
-
 		localStorage.removeItem("ratjwt");
 	}
 
-
 	saveToken(token: string) {
-
-		localStorage.setItem('ratjwt', token);
+		localStorage.setItem("ratjwt", token);
 	}
 
 	getToken():string {

@@ -18,63 +18,63 @@ import { Guard }  from 'src/app/services/guard';
 
 // Components
 import { AppComponent } from './app.component';
+import { Guard }  from 'src/app/services/guard';
+import { MapComponent } from './components/map/map.component';
+import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { EmailComponent } from './components/email/email.component';
 import { UserBioComponent } from './components/user-bio/user-bio.component';
+import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HousingInfoComponent } from './components/housing-info/housing-info.component';
-import { MapComponent } from './components/map/map.component';
-import { RegisterComponent } from './components/register/register.component';
-import { HomeComponent } from './components/home/home.component';
-import { HousingFormComponent } from './blocks/housing-form/housing-form.component';
 import { AnnounceRoomComponent } from './components/announce-room/announce-room.component';
 import { AnnounceRoomViewComponent } from './components/announce-room-view/announce-room-view.component';
 
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
+	{ path: "email", component: EmailComponent },
 	{ path: "register", component: RegisterComponent },
-	{ path: "dashboard", component: DashboardComponent, children: [
+	{ path: "dashboard", component: DashboardComponent, canActivate: [Guard], children: [
+		{ path: "map", component: MapComponent },
 		{ path: "home", component: HomeComponent },
 		{ path: "userBio", component: UserBioComponent },
-		{ path: "map", component: MapComponent },
-		{ path: "housing-info", component: HousingInfoComponent },
-		{ path: "announce", component: AnnounceRoomComponent },
-		{ path: "announcements", component: AnnounceRoomViewComponent },
 		{ path: "", redirectTo: "home", pathMatch: "full" },
+		{ path: "announce", component: AnnounceRoomComponent },
+		{ path: "housing-info", component: HousingInfoComponent },
+		{ path: "announcements", component: AnnounceRoomViewComponent }
 	] },
 	{ path: "", redirectTo: "login", pathMatch: "full" }
 ]
 
-
 @NgModule({
 	declarations: [
+		MapComponent,
 		AppComponent,
+		HomeComponent,
 		LoginComponent,
+		EmailComponent,
 		UserBioComponent,
+		RegisterComponent,
 		DashboardComponent,
 		HousingInfoComponent,
-		MapComponent,
-		RegisterComponent,
-		HomeComponent,
 		HousingFormComponent,
 		AnnounceRoomComponent,
 		AnnounceRoomViewComponent
-		
 	],
 	imports:[
 		FormsModule,
-		LeafletModule.forRoot(),
-		LeafletMarkerClusterModule.forRoot(),
 		BrowserModule,
 		MaterialModule,
 		HttpClientModule,
 		ReactiveFormsModule,
+		LeafletModule.forRoot(),
 		BrowserAnimationsModule,
-		RouterModule.forRoot(routes)
+		RouterModule.forRoot(routes),
+		LeafletMarkerClusterModule.forRoot()
 	],
 	providers:[
 		NavbarService,
 		Guard
-
 	],
 	bootstrap:[AppComponent]
 })
