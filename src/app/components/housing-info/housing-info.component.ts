@@ -31,8 +31,10 @@ export class HousingInfoComponent implements OnInit {
 			this.housingService.sendHousing(housing).subscribe(
 			(res) => {
 				console.log(res);
+				alert("Housing was successfully added!");
 			}, err => {
 				console.log(err);
+				alert("Some error happened. Please try again later.");
 			});
 
 		}, (err) => {

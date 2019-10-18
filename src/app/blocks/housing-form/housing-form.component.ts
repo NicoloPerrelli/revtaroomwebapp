@@ -12,7 +12,7 @@ import { HousingInfo } from 'src/app/models/housing-info';
 export class HousingFormComponent implements OnInit, OnChanges, AfterViewInit {
 
 	@Input("housingToView") housingToView: any = null;
-	@Input("edit") edit = true; 
+	@Input("edit") edit = true;
 	@Input("btnTitle") btnTitle = "Housing";
 	@Output("formEvent") formEvent = new EventEmitter<HousingInfo>();
 

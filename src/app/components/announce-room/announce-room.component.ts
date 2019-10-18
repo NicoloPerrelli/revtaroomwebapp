@@ -22,7 +22,8 @@ export class AnnounceRoomComponent implements OnInit {
 			console.log("In AnnounceRoomComponent...");
 			console.log("Housing", housing);
 			this.housingToView = housing;
-			this.edit = false;
+			if(housing == {}) this.edit = false;
+			
 		});
 	}
 
