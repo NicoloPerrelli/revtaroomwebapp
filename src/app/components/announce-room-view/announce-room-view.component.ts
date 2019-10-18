@@ -39,8 +39,10 @@ export class AnnounceRoomViewComponent implements OnInit {
 	}
 
 	goToRoom(housing?: any) {
-		housing.stringAddress = JSON.stringify(housing.address)
-		if(housing) this.router.navigate(["/dashboard/announce"], { queryParams: housing });
+		if(housing) {
+			housing.stringAddress = JSON.stringify(housing.address);
+			this.router.navigate(["/dashboard/announce"], { queryParams: housing });
+		}
 		else this.router.navigate(["/dashboard/announce"]);
 	}
 
