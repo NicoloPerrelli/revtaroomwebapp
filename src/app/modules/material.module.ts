@@ -9,10 +9,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule, MatButtonModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
   exports: [
+    MatSnackBarModule,
     MatCardModule,
     MatSelectModule,
     MatInputModule,

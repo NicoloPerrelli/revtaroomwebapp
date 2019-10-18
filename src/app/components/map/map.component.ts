@@ -76,12 +76,11 @@ export class MapComponent implements OnInit {
 	}
 
 	populateMapWithAvailableRooms() {
-		console.log("In populate map without housing array");
 		this.housingService.getRooms().subscribe(
 			(res: any) => {
-				let housingList = res as HousingInfo[];
+				let roomList = res as any[];
 				console.log("In populate map with housing array");
-				this.mapService.fillMapWithAvgPriceClusters(this.map,housingList);
+				this.mapService.fillMapWithAvailableRooms(this.map, roomList);
 			},
 			(err) => {
 

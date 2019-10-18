@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HousingInfo } from 'src/app/models/housing-info';
+import { HousingInfoService } from 'src/app/services/housing-service/housing-info.service';
 
 @Component({
   selector: 'app-announce-room-view',
@@ -12,11 +13,12 @@ export class AnnounceRoomViewComponent implements OnInit {
 	housings: HousingInfo[] = [];
 
 	constructor(
+		private housingService: HousingInfoService,
 		private router: Router
 	) { }
 
 	ngOnInit() {
-
+		// Get rooms by id
 	}
 
 	goToRoom(housing?) {

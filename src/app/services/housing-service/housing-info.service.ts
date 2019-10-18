@@ -47,7 +47,7 @@ export class HousingInfoService {
 
 	// Room for Rent
 	getRooms() {
-		return this.http.get(`${env.API_URL}/rooms`);
+		return this.http.get(`${env.API_URL}/rent`);
 	}
 
 	getRoomByUserId() {
@@ -56,7 +56,7 @@ export class HousingInfoService {
 
 	sendRoomForRent(housing: HousingInfo) {
 		let token = this.authService.getToken();
-		return this.http.post(`${env.API_URL}/rent-room`, housing, { observe: 'response', headers: { "Authorization": token }});
+		return this.http.post(`${env.API_URL}/rent`, housing, { observe: 'response', headers: { "Authorization": token }});
 	}
 
 }
