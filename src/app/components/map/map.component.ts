@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as L from 'leaflet';
 import { MapService } from 'src/app/services/map-service/map.service';
 import { HousingInfo } from 'src/app/models/housing-info';
+import { HousingInfoService } from 'src/app/services/housing-service/housing-info.service';
 
 @Component({
   selector: 'app-map',
@@ -10,18 +11,32 @@ import { HousingInfo } from 'src/app/models/housing-info';
 })
 export class MapComponent implements OnInit {
 
-	map:any;
+	map:L.Map;
 
-	constructor(private mapService: MapService) { }
+	constructor(
+		private housingService: HousingInfoService,
+		private mapService: MapService) { }
 
 	ngOnInit() {
 		this.createMap();
 		console.log("Map created");
-		
-		// this.mapService.mockGetAddresses(this.map);
-		
-		this.populateMap();
+	}
 
+	selectClusterType(e) {
+		let selection = +e.value;
+		this.map.remove();
+		this.createMap();
+		switch(selection) {
+			case 1:
+				this.populateMapWithAvgPrice();
+				break;
+			case 2:
+				this.populateMapWithAvailableRooms();
+				break;
+			case 3:
+				this.populateMapWithCount();
+				break;
+		} 
 	}
 
 	createMap() {
@@ -33,18 +48,51 @@ export class MapComponent implements OnInit {
         }).addTo(this.map);
 	}
 
-	populateMap() {
+	populateMapWithAvgPrice() {
 		console.log("In populate map without housing array");
-		this.mapService.getHousing().subscribe(
+		this.housingService.getHousing().subscribe(
 			(res: any) => {
 				let housingList = res as HousingInfo[];
 				console.log("In populate map with housing array");
-				this.mapService.fillMapWithClusters(this.map,housingList);
+				this.mapService.fillMapWithAvgPriceClusters(this.map,housingList);
 			},
 			(err) => {
 
 			}
 		);
 	}
+
+	populateMapWithCount() {
+		this.housingService.getHousing().subscribe(
+			(res: any) => {
+				let housingList = res as HousingInfo[];
+				console.log("In populate map with housing array");
+				this.mapService.fillMapWithCountClusters(this.map,housingList);
+			},
+			(err) => {
+
+			}
+		);
+	}
+
+	populateMapWithAvailableRooms() {
+		console.log("In populate map without housing array");
+		this.housingService.getRooms().subscribe(
+			(res: any) => {
+				let housingList = res as HousingInfo[];
+				console.log("In populate map with housing array");
+				this.mapService.fillMapWithAvgPriceClusters(this.map,housingList);
+			},
+			(err) => {
+
+			}
+		);
+	}
+
+	goToAnnouncement(obj) {
+		console.log(obj);
+	}
+
+
 
 }
