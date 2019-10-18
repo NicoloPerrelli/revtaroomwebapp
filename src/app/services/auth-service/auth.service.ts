@@ -13,7 +13,7 @@ export class AuthService {
 	private currentUserSubject: BehaviorSubject<Principal>;
 	currentUser$: Observable<Principal>;
 
-	principal:any;
+	principal:Principal;
 
 	constructor(private http: HttpClient) {
 		this.currentUserSubject = new BehaviorSubject<Principal>(null);
@@ -48,14 +48,11 @@ export class AuthService {
 	}
 
 	logout() {
-
 		localStorage.removeItem("ratjwt");
 	}
 
-
 	saveToken(token: string) {
-
-		localStorage.setItem('ratjwt', token);
+		localStorage.setItem("ratjwt", token);
 	}
 
 	getToken():string {

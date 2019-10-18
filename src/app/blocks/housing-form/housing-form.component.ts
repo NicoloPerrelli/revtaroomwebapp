@@ -56,12 +56,13 @@ export class HousingFormComponent implements OnInit, OnChanges, AfterViewInit {
 		// Filling Form if data was passed to this component
 		if(this.housingToView) {
 			console.log("About to set fields");
+			let aux = JSON.parse(this.housingToView.stringAddress);
 			console.log(this.housingForm);
-			this.housingForm.controls.streetAddress.setValue(this.housingToView.streetAddress);
-			this.housingForm.controls.houseNumber.setValue(this.housingToView.houseNumber);
-			this.housingForm.controls.city.setValue(this.housingToView.city);
-			this.housingForm.controls.state.setValue(this.housingToView.city);
-			this.housingForm.controls.pricePerMonth.setValue(this.housingToView.pricePerMonth);
+			this.housingForm.controls.streetAddress.setValue(aux.streetAddress);
+			this.housingForm.controls.houseNumber.setValue(aux.houseNumber);
+			this.housingForm.controls.city.setValue(aux.city);
+			this.housingForm.controls.state.setValue(aux.state);
+			this.housingForm.controls.pricePerMonth.setValue(+this.housingToView.pricePerMonth);
 			this.housingForm.controls.description.setValue(this.housingToView.description);
 		}
 
