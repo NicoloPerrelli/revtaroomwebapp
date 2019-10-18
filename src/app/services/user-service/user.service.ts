@@ -5,6 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../../environments/environment';
 import { User } from 'src/app/models/user';
 import { Observable } from 'rxjs';
+import { TrainingType } from 'src/app/models/training-type';
+import { stringify } from '@angular/compiler/src/util';
+import { UserBio } from 'src/app/models/user-bio';
 
 @Injectable({
   	providedIn: 'root'
@@ -12,15 +15,29 @@ import { Observable } from 'rxjs';
 export class UserService {
 
 	constructor(private http: HttpClient) {}
+	getUserProfile = () => {
+		console.log("userService getUserProfile called");
+		console.log("Using (-"+localStorage.getItem('ratjwt')+"-) as our token");
+		return this.http.get(`${env.API_URL}/profile`,
+		{headers: {"Authorization": localStorage.getItem('ratjwt')},
+		observe: 'response'}).pipe(
+			map(resp => {
+				return resp;
+			})
+		);
+	}
 
-
-	updateUser = (abtMe: string, NTK: string, gender: string 
-		/*, name:boolean, email:boolean, phone:boolean */) => {
-		let userBio = {abtMe, NTK, gender/*, name, email, phone */}
+	updateUserProfile = (description:string, trainingType: TrainingType) => {
 		console.log("Whats to be sent");
-		console.log(userBio);
-		return this.http.put(`${env.API_URL}/user-profile`, userBio,
-		{headers: {"Authorization": localStorage.getItem('rbs-jwt')},
+		console.log({description, trainingType});
+		let userProfile = {
+			"description":description,
+			"trainingType":(trainingType).toString()
+
+		};
+		console.log("With - " + localStorage.getItem('ratjwt'));
+		return this.http.put(`${env.API_URL}/profile`, userProfile,
+		{headers: {"Authorization": localStorage.getItem('ratjwt')},
 		observe: 'response'}).pipe(
 			map(resp => {
 				return resp;
