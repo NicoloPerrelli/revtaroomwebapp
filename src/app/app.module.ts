@@ -14,19 +14,21 @@ import { MaterialModule } from './modules/material.module';
 
 // Services
 import { NavbarService } from './services/navbar-service/navbar.service';
+import { Guard }  from 'src/app/services/guard';
 
 // Components
 import { AppComponent } from './app.component';
 import { Guard }  from 'src/app/services/guard';
 import { MapComponent } from './components/map/map.component';
+import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { EmailComponent } from './components/email/email.component';
 import { UserBioComponent } from './components/user-bio/user-bio.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HousingInfoComponent } from './components/housing-info/housing-info.component';
-
-
+import { AnnounceRoomComponent } from './components/announce-room/announce-room.component';
+import { AnnounceRoomViewComponent } from './components/announce-room-view/announce-room-view.component';
 
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
@@ -34,8 +36,12 @@ const routes: Routes = [
 	{ path: "register", component: RegisterComponent },
 	{ path: "dashboard", component: DashboardComponent, canActivate: [Guard], children: [
 		{ path: "map", component: MapComponent },
-		{ path: "user-bio", component: UserBioComponent },
-		{ path: "housing-info", component: HousingInfoComponent }
+		{ path: "home", component: HomeComponent },
+		{ path: "userBio", component: UserBioComponent },
+		{ path: "", redirectTo: "home", pathMatch: "full" },
+		{ path: "announce", component: AnnounceRoomComponent },
+		{ path: "housing-info", component: HousingInfoComponent },
+		{ path: "announcements", component: AnnounceRoomViewComponent }
 	] },
 	{ path: "", redirectTo: "login", pathMatch: "full" }
 ]
@@ -44,12 +50,16 @@ const routes: Routes = [
 	declarations: [
 		MapComponent,
 		AppComponent,
+		HomeComponent,
 		LoginComponent,
 		EmailComponent,
 		UserBioComponent,
 		RegisterComponent,
 		DashboardComponent,
-		HousingInfoComponent
+		HousingInfoComponent,
+		HousingFormComponent,
+		AnnounceRoomComponent,
+		AnnounceRoomViewComponent
 	],
 	imports:[
 		FormsModule,
@@ -65,7 +75,6 @@ const routes: Routes = [
 	providers:[
 		NavbarService,
 		Guard
-
 	],
 	bootstrap:[AppComponent]
 })
