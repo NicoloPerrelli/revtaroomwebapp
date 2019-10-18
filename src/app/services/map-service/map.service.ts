@@ -9,14 +9,16 @@ import { HousingInfo } from 'src/app/models/housing-info';
 })
 export class MapService {
 
+	actualLayer: L.Layer;
 	markerTitle = "Monthly price: $"
 
 	constructor(private http: HttpClient) { }
 
-	fillMapWithClusters(map: L.Map, list: HousingInfo[]) {
+	fillMapWithAvgPriceClusters(map: L.Map, list: HousingInfo[]) {
 		
 		let addressPoints: any[] = this.mapHousingIntoCoords(list);
-
+		
+		// Create cluster object and define its configuration
 		let markers = L.markerClusterGroup({ 
 			chunkedLoading: true,
 			iconCreateFunction: (cluster) => {
@@ -34,6 +36,8 @@ export class MapService {
 			}
 		});
 
+
+		// Get addresses points and insert them in the cluster group
 		for(let i=0;i<addressPoints.length;i++) {
 			let a = addressPoints[i];
 			let title = a[2];
@@ -43,40 +47,77 @@ export class MapService {
 		}
 
 		console.log("markers", markers);
-		
+		this.actualLayer = markers;
+		// Add all the points to the map
 		map.addLayer(markers);
 		
 	}
 
-	// drawCircle(map) {
-	// 	let lat = 27.996097;
-	// 	let lon = -82.582035;
+	fillMapWithCountClusters(map: L.Map, list: HousingInfo[]) {
+		let addressPoints: any[] = this.mapHousingIntoCoords(list);
+
+		// Create cluster object and define its configuration
+		let markers = L.markerClusterGroup({ 
+			chunkedLoading: true
+		});
+
+		// Get addresses points and insert them in the cluster group
+		for(let i=0;i<addressPoints.length;i++) {
+			let a = addressPoints[i];
+			let title = a[2];
+			let marker = L.marker(L.latLng(a[0],a[1]), { title: title });
+			marker.bindPopup(
+				`<div>
+					<h4>$${list[i].pricePerMonth}</h4>
+				</div>`
+			);
+			markers.addLayer(marker);
+		}
+
+		console.log("markers", markers);
 		
-	// 	let circle = L.circle(latLng(lat,lon), {
-	// 		color: 'red',
-	// 		fillColor: '#f03',
-	// 		fillOpacity: 0.5,
-	// 		radius: 300
-	// 	}).addTo(map);
-	// }
-
-	getHousing() {
-		return this.http.get(`${env.API_URL}/housing`);
+		// Add all the points to the map
+		map.addLayer(markers);
 	}
 
-	mockGetAddresses(map:L.Map) {
-		let addr = [
-			[27.996097, -82.582035, "IQ Apartments"],
-			[27.7733051, -82.6469934, "Saint Petesburg"],
-			[28.545179, -81.373291, "Orlando"],
-			[30.2685144, -81.5098507,"UNF"]
-		]
+	fillMapWithAvailableRooms(map: L.Map, list: any[]) {
+		console.log(list);
+		list = this.filterRoomsWithCoordinates(list);
+		// Create cluster object and define its configuration
+		let markers = L.markerClusterGroup({ 
+			chunkedLoading: true
+		});
 
-		// this.fillMapWithClusters(map,addr);
+		// Get addresses points and insert them in the cluster group
+		for(let i=0;i<list.length;i++) {
+			let marker = L.marker(L.latLng(+list[i].house.address.latitude,+list[i].house.address.longitude), { title: `$${list[i].pricePerMonth}` });
+			marker.bindPopup(
+				`<div>
+					<h4>${list[i].house.user.firstName} ${list[i].house.user.lastName}</h4>
+					<div>$${list[i].pricePerMonth}</div>
+					<div>${list[i].house.user.email}</div>
+				</div>`
+			);
+			markers.addLayer(marker);
+		}
 
+		console.log("markers", markers);
+		
+		// Add all the points to the map
+		map.addLayer(markers);
 	}
 
-	mapHousingIntoCoords(list: HousingInfo[]) {
+	private filterRoomsWithCoordinates(list: any[]) {
+		let points = [];
+		list.forEach(item => {
+			if(item.house.address.latitude && item.house.address.longitude) {
+				points.push(item);
+			}
+		});
+		return points;
+	}
+
+	private mapHousingIntoCoords(list: HousingInfo[]) {
 		let points = [];
 		list.forEach(item => {
 			if(item.address.latitude && item.address.longitude) {

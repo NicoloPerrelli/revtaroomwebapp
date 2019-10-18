@@ -1,30 +1,21 @@
 <div style="width: 90%;">
 	<div id="userBioProfilePicture">
-		<img src="https://via.placeholder.com/150C/O https://placeholder.com/">
 		<h2>{{username}}'s Bio</h2>
 	</div>
 	<form [formGroup]="userBioForm" (ngSubmit)="onSubmit()">
-		<div id="userBioAbtMe">
+		<div id="Description">
 			<textarea class="form-control" formControlName="abtMe" placeholder="About me..."
-				style="resize: none;" rows="7" cols="50" maxlength="300"
-				>{{currentAbtMe}}</textarea><!--dont place returns in here because they are read-->
+				value={{currentAbtMe}} style="resize: none;" rows="7" cols="50" maxlength="300">{{currentAbtMe}}</textarea>
 		</div>
-		<div id="userBioNeedToKnow">
-			<textarea class="form-control" formControlName="needToKnow"
-				placeholder="You Might Want To Know That I..."
-				style="resize: none;" rows="5" cols="50" maxlength="200"
-					>{{currentNTK}}</textarea><!--dont place returns in here because they are read-->
+		<div id="TrainingType" class="form-group">
+			<h4>Traning Type: {{trainingType}}</h4>
+			<select formControlName="training" class="form-control">
+				<option value=1>JAVA</option>
+				<option value=2>DEVOPS</option>
+				<option value=3>C#</option>
+				<option value=4>ANGULAR</option>
+			</select>
 		</div>
-		<div class="form-group" id="userBioGender">
-			[<input type="radio" formControlName="gender" value="male"> Male ]
-			[<input type="radio" formControlName="gender" value="female"> Female ]
-			[<input type="radio" formControlName="gender" value="other" checked> Other ]
-		</div>
-		<!-- <div class="form-group" id="userBioShow">
-			[<input type="checkbox" formControlName="showName" value="name"> Show Name ]
-			[<input type="checkbox" formControlName="showEmail" value="email"> Show Email ]
-			[<input type="checkbox" formControlName="showPhone" value="phone"> Show Phone ]
-		</div> -->
 		<hr>
 		<div class="form-group" id="userBioUpdateBtn">
 			<!-- <button [disabled]="loading" class="btn btn-primary">Update</button> -->
